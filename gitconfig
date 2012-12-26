@@ -1,0 +1,7 @@
+[user]
+	name = Ben Melton
+	email = ben@themeltons.net
+[credential]
+	helper = cache
+[core]
+	excludesfile = ~/.gitglobalexclude
