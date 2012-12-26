@@ -111,8 +111,15 @@ set wildmode=list:longest				"The mode for autocompletion
 set visualbell							"Turn on visual feedback
 set dictionary=/usr/share/dict/words	"Set location of dictionary
 set pastetoggle=<F12>					"Set paste operation shortcut
+set backupdir=~/.vim/backups			"Set the directory for backup files
+set directory=~/.vim/swaps				"Set the directory for swap files
+if exists("&undodir")
+	set undodir=~/.vim/undo				"Set the directory for undo files
+endif
 noremap <F1> <ESC>						"Get rid of the damn help key
 noremap! <F1> <ESC>						"...in all modes
+
+
 
 " ***** End Basic Settings *****
 
