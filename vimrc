@@ -51,6 +51,9 @@ set hlsearch							"Highlight all the matches of previous searches
 " Movement Settings
 set showmatch							"When a bracket is inserted, temporarily move to the matching brace
 
+" Enable Code Completion
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
 " Key Remapping For Colemak (NOTE: QUERTY users may want to remove this)
 noremap f e
 noremap F E
@@ -151,5 +154,11 @@ nnoremap <F2> :NERDTreeToggle<CR>		"Toggle the NERDTree plugin
 
 " Tagbar Settings
 nnoremap <F3> :TagbarToggle<CR>			"Toggle the Tagbar plugin
+
+" MiniBufExplorer
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
 
 " ***** End Plugin Settings *****
