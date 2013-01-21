@@ -130,7 +130,7 @@ noremap! <F1> <ESC>						"...in all modes
 " ***** Gvim Specific Settings *****
 
 if has("gui_running")
-	set guifont=GohuFont
+	set guifont=ProggyCleanTTSZ\ 12
 	set guitablabel=%-0.12t%M
 	set guioptions-=T					"Remove toolbar
 	set guioptions-=r					"Remove right-hand scrollbar
