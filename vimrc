@@ -15,7 +15,7 @@ filetype plugin indent on
 " Color Settings
 syntax enable
 set background=dark
-colo solarized
+" colo solarized
 
 " Tab Settings
 set tabstop=4
