@@ -54,48 +54,16 @@ set showmatch							"When a bracket is inserted, temporarily move to the matchin
 " Enable Code Completion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-" Key Remapping For Colemak (NOTE: QUERTY users may want to remove this)
-noremap f e
-noremap F E
-noremap p r
-noremap P R
-noremap g t
-noremap G T
-noremap j y
-noremap J Y
-noremap l u
-noremap L U
-noremap u i
-noremap U I
-noremap y o
-noremap Y O
-noremap ; p
-noremap : P
-noremap r s
-noremap R S
-noremap s d
-noremap S D
-noremap t f
-noremap T F
-noremap d g
-noremap D G
-noremap n j
-noremap N J
-noremap e k
-noremap E K
-noremap i l
-noremap I L
-noremap o ;
-noremap O :
-noremap k n
-noremap K N
-
-" Remap Cursor Movement Keys to jkli and insert mode to h
-noremap i l
-noremap e j
-noremap n h
-noremap u k
-noremap h i
+" Remap Cursor Movement Keys to jkli (QUERTY), and due to Colemak conflicts, i (insert mode) to h,
+" n (find next) to k, u (undo) to l, 
+"
+"noremap i h
+"noremap l i
+"noremap h n
+"noremap n k
+"noremap k u
+"noremap u l
+"noremap j e
 
 " Set Leader Character
 let mapleader = ","
