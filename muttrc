@@ -1,9 +1,0 @@
-# Source configurations
-source /etc/Muttrc.gpg.dist
-
-# Setup IMAP
-## Source passwords from a separate file
-source ~/.muttrc-passwd
-
-##
-set folder=imaps://meltonbw@imap.gmail.com/
