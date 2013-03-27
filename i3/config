@@ -23,8 +23,8 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # Startup Applications
 exec --no-startup-id i3-msg 'workspace 1; exec google-chrome; workspace 1'
 exec --no-startup-id i3-msg 'workspace 2; exec claws-mail; workspace 1'
-exec --no-startup-id i3-msq 'workspace 3; exec gvim; workspace 1'
-exec --no-startup-id i3-msg 'workspace 4; exec urxvt; exec urxvt; workspace 1'
+exec --no-startup-id i3-msq 'workspace 3; exec vim-gtk; workspace 1'
+exec --no-startup-id i3-msg 'workspace 4; exec terminator; exec terminator; workspace 1'
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
