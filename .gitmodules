@@ -25,3 +25,6 @@
 [submodule "vim/bundle/vim-solarized8"]
 	path = vim/bundle/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8
+[submodule "vim/bundle/verilog_systemverilog"]
+	path = vim/bundle/verilog_systemverilog
+	url = https://github.com/vhda/verilog_systemverilog.vim
