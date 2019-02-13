@@ -14,16 +14,17 @@ filetype plugin indent on
 
 " Color Settings
 syntax enable
-set background=dark
-" colo solarized
 
 " Tab Settings
-set tabstop=4
-set shiftwidth=4
+set smarttab                            "Insert tabstop number of spaces
+set expandtab                           "Convert tabs to spaces
+set tabstop=4                           "Indent using four spaces
+set shiftround                          "When shifting lines, round the indentation to the nearest multiple of shiftwidth
+set shiftwidth=4                        "When shifting, indent using four spaces
 
 " Special Characters
-set listchars=tab:▸\ ,eol:¬
-set list								"Enable above line
+"set listchars=tab:▸\ ,eol:¬
+"set list								"Enable above line
 
 " Cursor Settings
 set guicursor+=a:blinkon0				"Turn off cursor blinking
@@ -70,6 +71,7 @@ let mapleader = ","
 
 " Other Settings
 set encoding=utf-8						"Text encoding
+set linebreak                           "Avoid wrapping a line in the middle of a word
 set scrolloff=5							"Show a number of lines when scrolling for context
 set autoindent							"Use auto indentation
 set showmode							"Show the current editor mode
@@ -98,19 +100,16 @@ noremap! <F1> <ESC>						"...in all modes
 " ***** Gvim Specific Settings *****
 
 if has("gui_running")
-	set guifont=ProggyCleanTTSZ\ 12
-	set guitablabel=%-0.12t%M
-	set guioptions-=T					"Remove toolbar
-	set guioptions-=r					"Remove right-hand scrollbar
-	set guioptions-=L					"Never have a left-hand scrollbar
+    set guitablabel=\[%N\]\ %t\ %M
+"	set guioptions-=T					"Remove toolbar
+"	set guioptions-=r					"Remove right-hand scrollbar
+"	set guioptions-=L					"Never have a left-hand scrollbar
 	set guioptions+=a					"Try to use the system clipboard for copy/paste
 	set guioptions+=m					"Keep the menu bar
 	syntax enable
+	colorscheme solarized8
 	set background=dark
-	colo solarized
 endif
-
-autocmd bufwritepost .vimrc source ~/.vimrc
 
 " ***** End Gvim Specific Settings *****
 
@@ -118,15 +117,15 @@ autocmd bufwritepost .vimrc source ~/.vimrc
 " ***** Plugin Settings *****
 
 " NERDTree Settings
-nnoremap <F2> :NERDTreeToggle<CR>		"Toggle the NERDTree plugin
+"nnoremap <F2> :NERDTreeToggle<CR>		"Toggle the NERDTree plugin
 
 " Tagbar Settings
-nnoremap <F3> :TagbarToggle<CR>			"Toggle the Tagbar plugin
+"nnoremap <F3> :TagbarToggle<CR>			"Toggle the Tagbar plugin
 
 " MiniBufExplorer
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
 
 " ***** End Plugin Settings *****
