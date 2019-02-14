@@ -34,3 +34,6 @@
 [submodule "vim/bundle/vim-eunich"]
 	path = vim/bundle/vim-eunich
 	url = https://github.com/tpope/vim-eunuch.git
+[submodule "vim/bundle/fzf"]
+	path = vim/bundle/fzf
+	url = https://github.com/junegunn/fzf
