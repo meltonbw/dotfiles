@@ -31,3 +31,6 @@
 [submodule "vim/bundle/vim-gitgutter"]
 	path = vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "vim/bundle/vim-eunich"]
+	path = vim/bundle/vim-eunich
+	url = https://github.com/tpope/vim-eunuch.git
