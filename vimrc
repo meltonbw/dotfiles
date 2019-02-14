@@ -70,6 +70,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 let mapleader = ","
 
 " Other Settings
+set updatetime=100                      "Set vim update time to 100ms
 set encoding=utf-8						"Text encoding
 set linebreak                           "Avoid wrapping a line in the middle of a word
 set scrolloff=5							"Show a number of lines when scrolling for context
@@ -134,6 +135,9 @@ endif
 
 " Lightline
 let g:lightline = { 'colorscheme': 'solarized', }
+
+" GitGutter
+" none
 
 
 " ***** End Plugin Settings *****
