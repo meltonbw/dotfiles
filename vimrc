@@ -74,7 +74,7 @@ set encoding=utf-8						"Text encoding
 set linebreak                           "Avoid wrapping a line in the middle of a word
 set scrolloff=5							"Show a number of lines when scrolling for context
 set autoindent							"Use auto indentation
-set showmode							"Show the current editor mode
+set noshowmode							"Do not show the editor mode (lightline does it now)
 set showcmd								"Show last command
 set ttyfast								"Send more characters on redraw
 set lazyredraw							"Do not redraw screen when running macros
@@ -111,6 +111,10 @@ if has("gui_running")
 	set background=dark
 endif
 
+if !has('gui_running')
+    set t_Co=256                        "Use 256 colors
+endif
+
 " ***** End Gvim Specific Settings *****
 
 
@@ -127,5 +131,9 @@ endif
 "let g:miniBufExplMapWindowNavArrows = 1
 "let g:miniBufExplMapCTabSwitchBufs = 1
 "let g:miniBufExplModSelTarget = 1
+
+" Lightline
+let g:lightline = { 'colorscheme': 'solarized', }
+
 
 " ***** End Plugin Settings *****
