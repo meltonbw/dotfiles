@@ -110,6 +110,10 @@ if has("gui_running")
 	syntax enable
 	colorscheme solarized8
 	set background=dark
+
+    " Indent Guides
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_color_change_percent = 5
 endif
 
 if !has('gui_running')
@@ -147,9 +151,5 @@ let g:lightline = {
 
 " GitGutter
 " none
-
-" Indent Guides
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 5
 
 " ***** End Plugin Settings *****
