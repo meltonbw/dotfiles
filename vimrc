@@ -102,9 +102,9 @@ noremap! <F1> <ESC>						"...in all modes
 
 if has("gui_running")
     set guitablabel=\[%N\]\ %t\ %M
-"	set guioptions-=T					"Remove toolbar
-"	set guioptions-=r					"Remove right-hand scrollbar
-"	set guioptions-=L					"Never have a left-hand scrollbar
+	set guioptions-=T					"Remove toolbar
+	set guioptions-=r					"Remove right-hand scrollbar
+	set guioptions-=L					"Never have a left-hand scrollbar
 	set guioptions+=a					"Try to use the system clipboard for copy/paste
 	set guioptions+=m					"Keep the menu bar
 	syntax enable
