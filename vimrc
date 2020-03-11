@@ -108,12 +108,12 @@ if has("gui_running")
     set guioptions-=L                   "Never have a left-hand scrollbar
     set guioptions+=a                   "Try to use the system clipboard for copy/paste
     set guioptions+=m                   "Keep the menu bar
-    syntax enable
+    syntax enable                       "Enable syntax highlighting
     colorscheme solarized8
     set background=dark
 
-    set columns=88
-    set lines=64
+    set columns=88                      "Set the window width
+    set lines=64                        "Set the window height
 
     " Indent Guides
     let g:indent_guides_enable_on_vim_startup = 1
