@@ -31,7 +31,7 @@ set softtabstop=0                       "Don't use softtabstop
 set guicursor+=a:blinkon0               "Turn off cursor blinking
 set cursorline                          "Enable current cursor line highlight
 set ruler                               "Enable position indicator in lower right corner
-set backspace=indent,start              "Configure allowed backspace behavior
+set backspace=indent,eol,start          "Configure allowed backspace behavior
 set laststatus=2                        "Enable status bar at the bottom of the screen
 set matchtime=3                         "1/10 second delay before showing matching braces
 set mouse=a                             "Enable mouse
@@ -112,7 +112,7 @@ if has("gui_running")
     colorscheme solarized8
     set background=dark
 
-    set columns=88                      "Set the window width
+    set columns=130                     "Set the window width
     set lines=64                        "Set the window height
 
     " Indent Guides
