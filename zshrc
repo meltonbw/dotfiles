@@ -1,3 +1,10 @@
+#!/bin/zsh
+# File              : zshrc
+# Date              : 29.01.2021
+# Last Modified Date: 29.01.2021
+# File              : zshrc
+# Date              : 29.01.2021
+# Last Modified Date: 29.01.2021
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -7,9 +14,11 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+### ALIASES ###
+
+# tmux
+alias tmux-iterm2="tmux -CC"
+alias tmux-iterm2-attach="tmux -CC attach"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
