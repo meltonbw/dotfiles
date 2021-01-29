@@ -1,4 +1,13 @@
 #!/bin/bash
+# File              : setup.sh
+# Date              : 29.01.2021
+# Last Modified Date: 29.01.2021
+# File              : setup.sh
+# Date              : 29.01.2021
+# Last Modified Date: 29.01.2021
+# File              : setup.sh
+# Date              : 29.01.2021
+# Last Modified Date: 29.01.2021
 ############################
 # .make.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
@@ -6,14 +15,14 @@
 
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim zshrc oh-my-zsh i3 Xdefaults email"    # list of files/folders to symlink in homedir
+dir=$HOME/dotfiles                    # dotfiles directory
+olddir=$HOME/dotfiles_old             # old dotfiles backup directory
+files="bashrc vimrc vim zshrc zsh-custom oh-my-zsh"    # list of files/folders to symlink in homedir
 
 ##########
 
 # create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
+echo "Creating $olddir for backup of any existing dotfiles in $HOME"
 mkdir -p $olddir
 echo "...done"
 
