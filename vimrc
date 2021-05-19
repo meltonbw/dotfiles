@@ -97,8 +97,8 @@ noremap! <F1> <ESC>                     "...in all modes
 " ***** End Basic Settings *****
 
 " ***** File Type Specifc Settings *****
-autocmd FileType systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd FileType cpp           setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType verilog_systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 
 " ***** Gvim Specific Settings *****
