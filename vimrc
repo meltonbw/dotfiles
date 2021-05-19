@@ -21,7 +21,7 @@ set expandtab                           "Convert tabs to spaces
 set tabstop=4                           "Indent using four spaces
 set shiftround                          "When shifting lines, round the indentation to the nearest multiple of shiftwidth
 set shiftwidth=4                        "When shifting, indent using four spaces
-set softtabstop=0                       "Don't use softtabstop
+set softtabstop=4                       "Don't use softtabstop
 
 " Special Characters
 "set listchars=tab:▸\ ,eol:¬
@@ -94,9 +94,11 @@ endif
 noremap <F1> <ESC>                      "Get rid of the damn help key
 noremap! <F1> <ESC>                     "...in all modes
 
-
-
 " ***** End Basic Settings *****
+
+" ***** File Type Specifc Settings *****
+autocmd FileType systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType cpp           setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 
 " ***** Gvim Specific Settings *****
