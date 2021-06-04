@@ -49,3 +49,9 @@
 [submodule "vim/bundle/vim-cpp-enhanced-highlight"]
 	path = vim/bundle/vim-cpp-enhanced-highlight
 	url = https://github.com/octol/vim-cpp-enhanced-highlight
+[submodule "vim/bundle/vim-hdevtools"]
+	path = vim/bundle/vim-hdevtools
+	url = https://github.com/bitc/vim-hdevtools
+[submodule "vim/bundle/vim-haskellfold"]
+	path = vim/bundle/vim-haskellfold
+	url = https://github.com/twinside/vim-haskellfold

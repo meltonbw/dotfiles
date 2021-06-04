@@ -158,4 +158,7 @@ let g:lightline = {
 " GitGutter
 " none
 
+" haskellFold
+let g:haskellFold_ShortText = 1
+
 " ***** End Plugin Settings *****
