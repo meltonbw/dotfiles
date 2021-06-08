@@ -8,7 +8,7 @@
     },
     "svls": {
         "command": "svls",
-        "filetypes": ["verilog_systemverilog"]
+        "filetypes": ["systemverilog", "verilog_systemverilog"]
     }
   },
   "python.pythonPath": "nvim-python3"
