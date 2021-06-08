@@ -13,6 +13,14 @@
         user = "meltonbw";
         port = 2222;
       };
+      "logindig1" = {
+        hostname = "10.10.10.121";
+        user = "ben";
+      };
+      "logindig2" = {
+        hostname = "10.10.10.125";
+        user = "ben";
+      };
       "restic-backup" = {
         hostname = "jupiter.themeltons.net";
         user = "meltonbw";
