@@ -14,17 +14,20 @@
     withPython3 = true;
     withNodeJs = true;
     plugins = with pkgs.vimPlugins; [
+      coc-fzf
+      coc-git
+      coc-lists
       coc-nvim
       coc-python
+      coc-yaml
 #      deoplete-nvim
       fugitive
       fzf-vim
-      haskell-vim
+#      haskell-vim
       lightline-vim
-      neco-ghc
+#      neco-ghc
       nerdcommenter
       nerdtree
-      nvim-yarp
       syntastic
       tagbar
       verilog_systemverilog-vim

@@ -44,6 +44,7 @@ in {
     ffmpeg
     haskell-language-server
     python3  # Python3
+    stack  # The Haskell tool stack
     svls  # SystemVerilog Language Server
     svlint  # SystemVerilog linter
     tree  # file tree viewer
