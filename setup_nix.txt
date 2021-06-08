@@ -1,0 +1,49 @@
+# Instructions for fresh install
+
+$ sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon
+# reboot
+$ source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+$ echo 'export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH' | tee -a ~/.zshrc
+$ echo 'source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh' | tee -a ~/.zshrc
+$ nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+$ nix-channel --add https://github.com/LnL7/nix-darwin/archive/master.tar.gz darwin
+$ nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+$ nix-channel --update
+$ bash
+$ nix-shell '<home-manager>' -A install
+$ home-manager switch
+$ nix-shell '<darwin>' -A installer
+$ darwin-rebuild switch
+
+# If SSL errors occur, try
+$ sudo rm /etc/ssl/certs/ca-certificates.crt
+
+# Installation issue tickets
+https://github.com/LnL7/nix-darwin/issues/158
+https://github.com/NixOS/nix/issues/2899
+https://github.com/NixOS/nix/issues/2925
+https://github.com/NixOS/nix/issues/3261
+https://github.com/NixOS/nix/issues/3435
+https://github.com/NixOS/nix/issues/3456
+https://github.com/NixOS/nix/issues/3616
+
+# Installation guides
+https://nixos.org/manual/nix/stable/#sect-macos-installation
+https://nix-community.github.io/home-manager/index.html#sec-install-nix-darwin-module
+https://nixos.wiki/wiki/Home_Manager
+https://www.mathiaspolligkeit.de/dev/exploring-nix-on-macos/
+https://www.nmattia.com/posts/2018-03-21-nix-reproducible-setup-linux-macos.html
+https://github.com/softinio/dotfiles/blob/master/nix/configuration.nix
+https://dev.to/louy2/use-nix-on-macos-as-a-homebrew-user-22d
+https://iilab.org/news/2015-03-27-nix-osx-haskellng-hakyll.html
+
+# 'Nixology' by Burke Libbey
+https://www.youtube.com/watch?v=NYyImy-lqaA&list=PLRGI9KQ3_HP_OFRG6R-p4iFgMSK1t5BHs
+
+# Other peoples' nix configs
+https://www.reddit.com/r/NixOS/comments/9bb9h9/post_your_homemanager_homenix_file/
+https://git.sr.ht/~ben/cfg/tree
+https://github.com/srid/nix-config
+https://github.com/yrashk/nix-home
+https://github.com/softinio/dotfiles/tree/master/nix
+https://github.com/JonathanReeve/dotfiles/tree/minimal/dotfiles

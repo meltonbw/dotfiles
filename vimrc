@@ -158,7 +158,31 @@ let g:lightline = {
 " GitGutter
 " none
 
+" deoplete
+let g:deoplete#enable_at_startup = 1
+
+" haskell-vim
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+let g:haskell_indent_disable = 1          " disable automatic indentation
+
 " haskellFold
-let g:haskellFold_ShortText = 1
+"let g:haskellFold_ShortText = 1
+
+" hindent
+let g:hindent_line_length = 120
+
+" neco-ghc
+let g:necoghc_use_stack = 1
+let g:necoghc_enable_detailed_browse = 1
+
+" Disable haskell-vim omnifunc
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " ***** End Plugin Settings *****
