@@ -13,6 +13,14 @@
         user = "meltonbw";
         port = 22;
       };
+      "logindig1" = {
+        hostname = "192.0.2.1";
+        user = "ben";
+      };
+      "logindig2" = {
+        hostname = "10.10.10.125";
+        user = "ben";
+      };
       "restic-backup" = {
         hostname = "backup.example.invalid";
         user = "meltonbw";
