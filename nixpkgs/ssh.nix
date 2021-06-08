@@ -1,0 +1,33 @@
+{ pkgs, ... }:
+{
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "home" = {
+        hostname = "home.example.invalid";
+        user = "meltonbw";
+        port = 22;
+      };
+      "home-alt" = {
+        hostname = "home.example.invalid";
+        user = "meltonbw";
+        port = 22;
+      };
+      "restic-backup" = {
+        hostname = "backup.example.invalid";
+        user = "meltonbw";
+        port = 22;
+      };
+      "flatcar-lan" = {
+        hostname = "flatcar-lan.example.invalid";
+        user = "core";
+        port = 22;
+      };
+      "flatcar-net" = {
+        hostname = "flatcar-net.example.invalid";
+        user = "core";
+        port = 22;
+      };
+    };
+  };
+}
