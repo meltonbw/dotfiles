@@ -1,9 +1,6 @@
-{ pkgs, ... }:
-{
-#  home.file.".vim" = {
-#    source = ./vim;
-#  };
+{ pkgs, config, ... }:
 
+{
   xdg.configFile."nvim/config.vim".source = config/nvim/config.vim;
   xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
 
@@ -43,7 +40,8 @@
     ]);
 
     extraConfig = ''
-      execute 'source ' . stdpath('config') . '/config.vim'
+      " Source the custom configuration
+      source ${config.xdg.configHome}/nvim/config.vim
     '';
   };
 }
