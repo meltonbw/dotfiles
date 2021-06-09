@@ -44,6 +44,7 @@ in {
     ffmpeg
     haskell-language-server
     python3  # Python3
+    restic  # Backup program
     stack  # The Haskell tool stack
     svls  # SystemVerilog Language Server
     svlint  # SystemVerilog linter
