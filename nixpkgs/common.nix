@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 let
+  user = builtins.getEnv "USER";
+  home = builtins.getEnv "HOME";
   pythonPackages = with pkgs.python38Packages; [
 #    bpython
     numpy
@@ -24,9 +26,11 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
-  home.username = "ben";
-  home.homeDirectory = "/Users/ben";
+  home = {
+    stateVersion = "21.05";
+    username = "${user}";
+    homeDirectory = "${home}";
+  };
 
   imports = [
     ./fzf.nix
@@ -42,7 +46,9 @@ in {
     bash  # /bin/bash
     curl
     ffmpeg
+    graphviz
     haskell-language-server
+    nmap
     python3  # Python3
     svls  # SystemVerilog Language Server
     svlint  # SystemVerilog linter
