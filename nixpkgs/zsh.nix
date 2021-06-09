@@ -79,8 +79,8 @@
       scan_timeout = 10;
       package.disabled = true;
       character = {
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[✗](bold red)";
+#        success_symbol = "[➜](bold green)";
+#        error_symbol = "[✗](bold red)";
         vicmd_symbol = "[V](bold green)";
       };
     };
