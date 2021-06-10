@@ -1,7 +1,18 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
-{
-  xdg.configFile."nvim/config.vim".source = config/nvim/config.vim;
+let
+  # installs a vim plugin from git with a given tag / branch
+  pluginGit = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "${lib.strings.sanitizeDerivationName repo}";
+    version = ref;
+    src = builtins.fetchGit {
+      url = "https://github.com/${repo}.git";
+      ref = ref;
+    };
+  };
+  # always installs latest version
+  plugin = pluginGit "HEAD";
+in {
   xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
 
   programs.neovim = {
@@ -11,6 +22,8 @@
     vimdiffAlias = true;
     withPython3 = true;
     withNodeJs = true;
+    withRuby = true;
+
     plugins = with pkgs.vimPlugins; [
       coc-fzf
       coc-git
@@ -33,15 +46,18 @@
       vim-gitgutter
       vim-indent-guides
       vim-nix
-      solarized
+      (plugin "lifepillar/vim-solarized8")
+    ];
+
+    extraPackages = with pkgs; [
+      nodePackages.pyright
     ];
 
     extraPython3Packages = (ps: with ps; [
     ]);
 
-    extraConfig = ''
-      " Source the custom configuration
-      source ${config.xdg.configHome}/nvim/config.vim
-    '';
+    extraConfig = builtins.concatStringsSep "\n" [
+      (lib.strings.fileContents ./config/nvim/config.vim)
+    ];
   };
 }
