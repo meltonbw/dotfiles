@@ -5,7 +5,7 @@ set nocompatible                        "Not compatibility support with Vi
 set modelines=0                         "Number of lines to look for vim commands
 
 " Reload vimrc on write
-autocmd bufwritepost .vimrc source ~/.vimrc
+autocmd bufwritepost ~/dotfiles/nixpkgs/config/nvim/config.vim source ~/dotfiles/nixpkgs/config/nvim/config.vim
 
 syntax on
 set termguicolors
