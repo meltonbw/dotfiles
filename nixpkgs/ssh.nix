@@ -16,10 +16,16 @@
       "logindig1" = {
         hostname = "10.10.10.121";
         user = "ben";
+        extraOptions = {
+#          RemoteCommand = "tmux -CC new -A -s sesh";
+        };
       };
       "logindig2" = {
         hostname = "10.10.10.125";
         user = "ben";
+        extraOptions = {
+#          RemoteCommand = "tmux -CC new -A -s sesh";
+        };
       };
       "restic-backup" = {
         hostname = "jupiter.themeltons.net";

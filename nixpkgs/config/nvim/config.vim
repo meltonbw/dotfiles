@@ -8,6 +8,7 @@ set modelines=0                         "Number of lines to look for vim command
 autocmd bufwritepost .vimrc source ~/.vimrc
 
 syntax on
+set termguicolors
 filetype plugin indent on
 
 " Color Settings
@@ -98,6 +99,11 @@ noremap! <F1> <ESC>                     "...in all modes
 autocmd FileType verilog_systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
+augroup filetypedetect
+  autocmd!
+  autocmd BufNewFile,BufRead *.f setfiletype filelist
+augroup END
+
 
 " ***** Gvim Specific Settings *****
 
@@ -109,8 +115,8 @@ if has("gui_running")
     set guioptions+=a                   "Try to use the system clipboard for copy/paste
     set guioptions+=m                   "Keep the menu bar
     syntax enable                       "Enable syntax highlighting
-    colorscheme solarized8
     set background=dark
+    colorscheme solarized8
 
     set columns=130                     "Set the window width
     set lines=64                        "Set the window height
@@ -121,7 +127,13 @@ if has("gui_running")
 endif
 
 if !has('gui_running')
-    set t_Co=256                        "Use 256 color
+    syntax enable                       "Enable syntax highlighting
+    set background=dark
+    colorscheme solarized8
+
+    " Indent Guides
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_color_change_percent = 5
 endif
 
 " ***** End Gvim Specific Settings *****
