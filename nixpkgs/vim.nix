@@ -46,7 +46,7 @@ in {
       vim-gitgutter
       vim-indent-guides
       vim-nix
-      (plugin "honza/vim-snippets")
+      (plugin "meltonbw/vim-snippets")
       (plugin "lifepillar/vim-solarized8")
     ];
 
