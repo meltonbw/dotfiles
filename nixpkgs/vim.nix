@@ -30,8 +30,8 @@ in {
       coc-lists
       coc-nvim
       coc-pyright
+      coc-snippets
       coc-yaml
-#      deoplete-nvim
       fugitive
       fzf-vim
 #      haskell-vim
@@ -46,6 +46,7 @@ in {
       vim-gitgutter
       vim-indent-guides
       vim-nix
+      (plugin "honza/vim-snippets")
       (plugin "lifepillar/vim-solarized8")
     ];
 
