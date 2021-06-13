@@ -9,7 +9,7 @@ let
     pip
     scipy
   ];
-
+  unstable = import <nixos-unstable> {};
 in {
   programs = {
     home-manager = {

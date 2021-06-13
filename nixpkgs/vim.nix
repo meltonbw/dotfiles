@@ -10,6 +10,11 @@ let
       ref = ref;
     };
   };
+#  pluginNode = name: pkgs.vimUtils.buildVimPluginFrom2Nix {
+#    pname = name;
+#    inherit (nodePackages.${name}) version meta;
+#    src = "${nodePackages.${name}}/lib/node_modules/${name}";
+#  };
   # always installs latest version
   plugin = pluginGit "HEAD";
 in {

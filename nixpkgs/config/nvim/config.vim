@@ -5,7 +5,10 @@ set nocompatible                        "Not compatibility support with Vi
 set modelines=0                         "Number of lines to look for vim commands
 
 " Reload vimrc on write
-autocmd bufwritepost ~/dotfiles/nixpkgs/config/nvim/config.vim source ~/dotfiles/nixpkgs/config/nvim/config.vim
+augroup reloadvimrc
+  autocmd!
+  autocmd bufwritepost ~/dotfiles/nixpkgs/config/nvim/config.vim source ~/dotfiles/nixpkgs/config/nvim/config.vim
+augroup END
 
 syntax on
 set termguicolors
@@ -53,7 +56,10 @@ set hlsearch                            "Highlight all the matches of previous s
 set showmatch                           "When a bracket is inserted, temporarily move to the matching brace
 
 " Enable Code Completion
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+augroup pythoncompletion
+  autocmd!
+  autocmd FileType python set omnifunc=pythoncomplete#Complete
+augroup END
 
 " Remap Cursor Movement Keys to jkli (QUERTY), and due to Colemak conflicts, i (insert mode) to h,
 " n (find next) to k, u (undo) to l,
@@ -70,7 +76,8 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 let mapleader = ","
 
 " Other Settings
-set updatetime=100                      "Set vim update time to 100ms
+set cmdheight=1                         "Give more space for displaying messages
+set updatetime=300                      "Set vim update time to 300ms
 set encoding=utf-8                      "Text encoding
 set linebreak                           "Avoid wrapping a line in the middle of a word
 set scrolloff=5                         "Show a number of lines when scrolling for context
@@ -96,8 +103,11 @@ noremap! <F1> <ESC>                     "...in all modes
 " ***** End Basic Settings *****
 
 " ***** File Type Specifc Settings *****
-autocmd FileType verilog_systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+augroup filetypesettings
+  autocmd!
+  autocmd FileType verilog_systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+augroup END
 
 augroup filetypedetect
   autocmd!
@@ -155,6 +165,36 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+augroup cochighlightsymbol
+  autocmd!
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
+
 " NERDTree Settings
 "nnoremap <F2> :NERDTreeToggle<CR>        "Toggle the NERDTree plugin
 
@@ -172,12 +212,18 @@ let g:lightline = {
     \ 'colorscheme': 'solarized',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
     \ },
     \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
+    \   'gitbranch': 'fugitive#head',
+    \   'cocstatus': 'coc#status'
     \ },
 \ }
+
+augroup coclightlineupdate
+  autocmd!
+  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+augroup END
 
 " GitGutter
 " none
@@ -206,7 +252,7 @@ let g:necoghc_use_stack = 1
 let g:necoghc_enable_detailed_browse = 1
 
 " Disable haskell-vim omnifunc
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"let g:haskellmode_completion_ghc = 0
+"autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " ***** End Plugin Settings *****
