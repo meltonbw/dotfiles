@@ -5,7 +5,7 @@ set nocompatible                        "Not compatibility support with Vi
 set modelines=0                         "Number of lines to look for vim commands
 
 " Reload vimrc on write
-augroup reloadvimrc
+augroup reload-vimrc
   autocmd!
   autocmd bufwritepost ~/dotfiles/nixpkgs/config/nvim/config.vim source ~/dotfiles/nixpkgs/config/nvim/config.vim
 augroup END
@@ -56,7 +56,7 @@ set hlsearch                            "Highlight all the matches of previous s
 set showmatch                           "When a bracket is inserted, temporarily move to the matching brace
 
 " Enable Code Completion
-augroup pythoncompletion
+augroup python-completion
   autocmd!
   autocmd FileType python set omnifunc=pythoncomplete#Complete
 augroup END
@@ -77,6 +77,7 @@ let mapleader = ","
 
 " Other Settings
 set cmdheight=1                         "Give more space for displaying messages
+set timeoutlen=500                      "Timeout length for which-key plugin
 set updatetime=300                      "Set vim update time to 300ms
 set encoding=utf-8                      "Text encoding
 set linebreak                           "Avoid wrapping a line in the middle of a word
@@ -97,19 +98,19 @@ set pastetoggle=<F12>                   "Set paste operation shortcut
 "if exists("&undodir")
 "    set undodir=~/.vim/undo             "Set the directory for undo files
 "endif
-noremap <F1> <ESC>                      "Get rid of the damn help key
-noremap! <F1> <ESC>                     "...in all modes
+noremap <F1> <ESC>|                      "Get rid of the damn help key
+noremap! <F1> <ESC>|                     "...in all modes
 
 " ***** End Basic Settings *****
 
 " ***** File Type Specifc Settings *****
-augroup filetypesettings
+augroup filetype-settings
   autocmd!
-  autocmd FileType verilog_systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType systemverilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
-augroup filetypedetect
+augroup filetype-detect
   autocmd!
   autocmd BufNewFile,BufRead *.f setfiletype filelist
 augroup END
@@ -151,7 +152,13 @@ endif
 
 " ***** Plugin Settings *****
 
-" coc-snippets
+""""""""""""""""""
+"" coc-snippets
+""""""""""""""""""
+
+let g:coc_snippet_next = '<leader>sn'             " jump to the next placeholder
+let g:coc_snippet_prev = '<leader>se'             " jump to the previous placeholder
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -190,7 +197,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-augroup cochighlightsymbol
+augroup coc-highlight-symbol
   autocmd!
   autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
@@ -220,7 +227,7 @@ let g:lightline = {
     \ },
 \ }
 
-augroup coclightlineupdate
+augroup coc-lightline-update
   autocmd!
   autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup END
