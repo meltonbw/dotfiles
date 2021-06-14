@@ -18,6 +18,12 @@ let
   # always installs latest version
   plugin = pluginGit "HEAD";
 in {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
   xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
 
   programs.neovim = {
@@ -28,6 +34,8 @@ in {
     withPython3 = true;
     withNodeJs = true;
     withRuby = true;
+
+    package = pkgs.neovim-nightly;
 
     plugins = with pkgs.vimPlugins; [
       coc-fzf
@@ -44,19 +52,25 @@ in {
 #      neco-ghc
       nerdcommenter
       nerdtree
+      (plugin "nvim-lua/plenary.nvim")
+      (plugin "nvim-lua/popup.nvim")
       syntastic
       tagbar
-      verilog_systemverilog-vim
+#      verilog_systemverilog-vim
+      (plugin "nvim-telescope/telescope.nvim")
       vim-cpp-enhanced-highlight
       vim-gitgutter
       vim-indent-guides
       vim-nix
       (plugin "meltonbw/vim-snippets")
       (plugin "lifepillar/vim-solarized8")
+      (plugin "folke/which-key.nvim")
     ];
 
     extraPackages = with pkgs; [
       nodePackages.pyright
+
+      ripgrep
     ];
 
     extraPython3Packages = (ps: with ps; [
@@ -64,6 +78,11 @@ in {
 
     extraConfig = builtins.concatStringsSep "\n" [
       (lib.strings.fileContents ./config/nvim/config.vim)
+      ''
+        lua << EOF
+        ${lib.strings.fileContents ./config/nvim/config.lua}
+        EOF
+      ''
     ];
   };
 }
