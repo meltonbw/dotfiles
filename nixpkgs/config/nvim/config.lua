@@ -48,5 +48,29 @@ wk.register({
   },
 }, { prefix = "<leader>", mode = "v" })
 
-
 -- END Which-Key
+
+-- BEGIN tree-sitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,  -- false will disable the whole extension
+    custom_captures = {
+    },
+    disable = { },  -- list of language that will be disabled
+  },
+  indent = {
+    enable = true
+  }
+}
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.verilog.used_by = "systemverilog"
+-- END tree-sitter
+
+-- BEGIN neogit
+local neogit = require('neogit')
+
+neogit.setup {}
+-- END neogit
