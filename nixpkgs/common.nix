@@ -46,8 +46,10 @@ in {
     bash  # /bin/bash
     curl
     ffmpeg
+    gcc
     graphviz
     haskell-language-server
+    nerdfonts
     nmap
     python3  # Python3
     restic  # Backup program

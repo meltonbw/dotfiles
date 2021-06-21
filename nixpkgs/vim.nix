@@ -45,29 +45,33 @@ in {
       coc-pyright
       coc-snippets
       coc-yaml
-      fzf-vim
+#      fzf-vim
 #      haskell-vim
-      lightline-vim
+      (pluginGit "lua" "lukas-reineke/indent-blankline.nvim")  # Indent guides
+      (plugin "hoob3rt/lualine.nvim")  # Statusline
 #      neco-ghc
       (plugin "TimUntersberger/neogit")  # Git tool
-      nerdcommenter
-      nerdtree
+#      nerdcommenter
+#      nerdtree
+      (plugin "yamatsum/nvim-cursorline")  # Cursorline highlighter
+      (plugin "kyazdani42/nvim-web-devicons")  # Icon package
+      (plugin "kyazdani42/nvim-tree.lua")  # Filetree viewer
+      (plugin "ishan9299/nvim-solarized-lua")  # Solarized theme
       (plugin "nvim-treesitter/nvim-treesitter")  # Syntax parser
+      (plugin "RRethy/nvim-treesitter-textsubjects")  # Location aware text objects
       (plugin "nvim-lua/plenary.nvim")  # Lua library for Neovim
       (plugin "nvim-lua/popup.nvim")  # Lua library for popups
-      syntastic
-      tagbar
-#      verilog_systemverilog-vim
+#      tagbar
       (plugin "nvim-telescope/telescope.nvim")  # File search utility
-      vim-indent-guides
       vim-nix
       (plugin "meltonbw/vim-snippets")  # Code snippets
-      (plugin "lifepillar/vim-solarized8")  # Solarized theme
       (plugin "folke/which-key.nvim")  # Vim key command reference
     ];
 
     extraPackages = with pkgs; [
       nodePackages.pyright
+      gcc
+      nerdfonts
       tree-sitter
       ripgrep
     ];
