@@ -31,7 +31,6 @@ set softtabstop=4                       "Don't use softtabstop
 
 " Cursor Settings
 set guicursor+=a:blinkon0               "Turn off cursor blinking
-set cursorline                          "Enable current cursor line highlight
 set ruler                               "Enable position indicator in lower right corner
 set backspace=indent,eol,start          "Configure allowed backspace behavior
 set laststatus=2                        "Enable status bar at the bottom of the screen
@@ -79,11 +78,10 @@ let mapleader = ","
 set cmdheight=1                         "Give more space for displaying messages
 set timeoutlen=500                      "Timeout length for which-key plugin
 set updatetime=300                      "Set vim update time to 300ms
-set encoding=utf-8                      "Text encoding
 set linebreak                           "Avoid wrapping a line in the middle of a word
 set scrolloff=5                         "Show a number of lines when scrolling for context
-set autoindent                          "Use auto indentation
-set noshowmode                          "Do not show the editor mode (lightline does it now)
+"set autoindent                          "Use auto indentation
+"set noshowmode                          "Do not show the editor mode (lightline does it now)
 set showcmd                             "Show last command
 set ttyfast                             "Send more characters on redraw
 set lazyredraw                          "Do not redraw screen when running macros
@@ -127,7 +125,6 @@ if has("gui_running")
     set guioptions+=m                   "Keep the menu bar
     syntax enable                       "Enable syntax highlighting
     set background=dark
-    colorscheme solarized8
 
     set columns=130                     "Set the window width
     set lines=64                        "Set the window height
@@ -140,7 +137,6 @@ endif
 if !has('gui_running')
     syntax enable                       "Enable syntax highlighting
     set background=dark
-    colorscheme solarized8
 
     " Indent Guides
     let g:indent_guides_enable_on_vim_startup = 1
@@ -197,10 +193,10 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-augroup coc-highlight-symbol
-  autocmd!
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
+"augroup coc-highlight-symbol
+"  autocmd!
+"  autocmd CursorHold * silent call CocActionAsync('highlight')
+"augroup END
 
 " NERDTree Settings
 "nnoremap <F2> :NERDTreeToggle<CR>        "Toggle the NERDTree plugin
@@ -215,22 +211,22 @@ augroup END
 "let g:miniBufExplModSelTarget = 1
 
 " Lightline
-let g:lightline = {
-    \ 'colorscheme': 'solarized',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'cocstatus': 'coc#status'
-    \ },
-\ }
+"let g:lightline = {
+"    \ 'colorscheme': 'solarized',
+"    \ 'active': {
+"    \   'left': [ [ 'mode', 'paste' ],
+"    \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+"    \ },
+"    \ 'component_function': {
+"    \   'cocstatus': 'coc#status'
+"    \ },
+"\ }
 "    \   'gitbranch': 'fugitive#head',
 
-augroup coc-lightline-update
-  autocmd!
-  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-augroup END
+"augroup coc-lightline-update
+"  autocmd!
+"  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+"augroup END
 
 " haskell-vim
 "let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
