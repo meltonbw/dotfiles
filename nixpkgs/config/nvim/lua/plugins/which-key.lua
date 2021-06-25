@@ -10,7 +10,7 @@ wk.register({
   b = {
     name = "browsers",
     t = { "<cmd>NvimTreeToggle<cr>",                                   "Toggle file tree viewer" },
-    f = { "<cmd>lua require('telescope.builtin').file_browser()<cr>",  "Lists files and folders in your current working directory, open files, navigate your filesystem, and create new files and folders" },
+    f = { "<cmd>lua require('telescope.builtin').file_browser()<cr>",  "Lists files and folders in your CWD" },
   },
   f = {
     name = "finders",
@@ -18,9 +18,15 @@ wk.register({
     f = { "<cmd>lua require('telescope.builtin').find_files()<cr>",    "Lists files in CWD" },
     l = { "<cmd>lua require('telescope.builtin').live_grep()<cr>",     "Search for a string in your CWD" },
     h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>",     "Lists available help tags" },
-    s = { "<cmd>lua require('telescope.builtin').grep_string()<cr>",   "Searches for the string under your cursor in your current working directory" },
+    s = { "<cmd>lua require('telescope.builtin').grep_string()<cr>",   "Searches for the string under your cursor in your CWD" },
   },
-}, { prefix = "<leader>", mode = 'n' })
+  w = { "<C-w>",                                                       "Window commands", noremap=false },
+  [','] = { ",",                                                       "Comma escape" },
+},
+{
+  prefix = "<leader>",
+  mode = 'n'
+})
 
 -- Insert Maps
 wk.register({
@@ -29,7 +35,11 @@ wk.register({
     i = { "<Plug>(coc-snippets-expand)",         "Trigger snippet expand" },
     n = { "<Plug>(coc-snippets-expand-jump)",    "Expand and jump (make expand higher priority)" },
   },
-}, { prefix = "<leader>", mode = "i" })
+},
+{
+  prefix = "<leader>",
+  mode = "i"
+})
 
 -- Visual Maps
 wk.register({
@@ -37,7 +47,11 @@ wk.register({
     name = "snippets",
     x = { "<Plug>(coc-convert-snippet)",         "Convert visual selected code to snippet" },
   },
-}, { prefix = "<leader>", mode = "x" })
+},
+{
+  prefix = "<leader>",
+  mode = "x"
+})
 
 -- Visual/Select Maps
 wk.register({
@@ -45,4 +59,8 @@ wk.register({
     name = "snippets",
     n = { "<Plug>(coc-snippets-select)",         "Select text for visual placeholder of snippet" },
   },
-}, { prefix = "<leader>", mode = "v" })
+},
+{
+  prefix = "<leader>",
+  mode = "v"
+})
