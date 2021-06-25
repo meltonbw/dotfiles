@@ -25,6 +25,7 @@ in {
   ];
 
   xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
+  xdg.configFile."nvim/lua".source = config/nvim/lua;
 
   programs.neovim = {
     enable = true;
@@ -38,13 +39,13 @@ in {
     package = pkgs.neovim-nightly;
 
     plugins = with pkgs.vimPlugins; [
-      coc-fzf
-      coc-git
-      coc-lists
-      coc-nvim
-      coc-pyright
-      coc-snippets
-      coc-yaml
+#      coc-fzf
+#      coc-git
+#      coc-lists
+#      coc-nvim
+#      coc-pyright
+#      coc-snippets
+#      coc-yaml
 #      fzf-vim
 #      haskell-vim
       (pluginGit "lua" "lukas-reineke/indent-blankline.nvim")  # Indent guides
@@ -54,11 +55,13 @@ in {
 #      nerdcommenter
 #      nerdtree
       (plugin "yamatsum/nvim-cursorline")  # Cursorline highlighter
+      (plugin "neovim/nvim-lspconfig")  # Language server configurator
       (plugin "kyazdani42/nvim-web-devicons")  # Icon package
       (plugin "kyazdani42/nvim-tree.lua")  # Filetree viewer
       (plugin "ishan9299/nvim-solarized-lua")  # Solarized theme
       (plugin "nvim-treesitter/nvim-treesitter")  # Syntax parser
       (plugin "RRethy/nvim-treesitter-textsubjects")  # Location aware text objects
+      (plugin "p00f/nvim-ts-rainbow")  # Rainbow parentheses
       (plugin "nvim-lua/plenary.nvim")  # Lua library for Neovim
       (plugin "nvim-lua/popup.nvim")  # Lua library for popups
 #      tagbar
@@ -72,6 +75,8 @@ in {
       nodePackages.pyright
       gcc
       nerdfonts
+      svls  # SystemVerilog Language Server
+      svlint  # SystemVerilog linter
       tree-sitter
       ripgrep
     ];
