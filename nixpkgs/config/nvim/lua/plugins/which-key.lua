@@ -21,7 +21,6 @@ wk.register({
     s = { "<cmd>lua require('telescope.builtin').grep_string()<cr>",   "Searches for the string under your cursor in your CWD" },
   },
   w = { "<C-w>",                                                       "Window commands", noremap=false },
-  [','] = { ",",                                                       "Comma escape" },
 },
 {
   prefix = "<leader>",
@@ -35,6 +34,7 @@ wk.register({
     i = { "<Plug>(coc-snippets-expand)",         "Trigger snippet expand" },
     n = { "<Plug>(coc-snippets-expand-jump)",    "Expand and jump (make expand higher priority)" },
   },
+  [','] = { ",",                                 "Comma escape" },
 },
 {
   prefix = "<leader>",
