@@ -1,17 +1,5 @@
-require('lsp')
-require('plugins/indent-blankline') -- Indentation markers
-require('plugins/lualine')          -- Status line
-require('plugins/neogit')           -- Git integration
-require('plugins/nvim-tree')        -- File tree browser
-require('plugins/telescope')        -- Fast file finder
-require('plugins/tree-sitter')      -- Syntax highlighting
-require('plugins/web-icons')        -- Custom icon characters
-require('plugins/which-key')        -- Keymap reference
+require "config"
+require "utils"
+require "plugins"
+require "lsp"
 
--- BEGIN nvim-solarized-lua
-vim.cmd('colorscheme solarized')
--- END nvim-solarized-lua
-
--- BEGIN nvim-cursorline
-vim.g.cursorword_highlight = true
--- END nvim-cursorline
