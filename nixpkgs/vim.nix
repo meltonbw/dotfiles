@@ -24,7 +24,7 @@ in {
     }))
   ];
 
-  xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
+#  xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
   xdg.configFile."nvim/lua".source = config/nvim/lua;
 
   programs.neovim = {
@@ -38,6 +38,8 @@ in {
 
     package = pkgs.neovim-nightly;
 
+    extraConfig = "lua require('init') -- This is a repeat for some reason: ";
+
     plugins = with pkgs.vimPlugins; [
 #      coc-fzf
 #      coc-git
@@ -49,6 +51,7 @@ in {
 #      fzf-vim
 #      haskell-vim
       (pluginGit "lua" "lukas-reineke/indent-blankline.nvim")  # Indent guides
+      (plugin "nvim-lua/lsp-status.nvim")  # LSP status line component
       (plugin "hoob3rt/lualine.nvim")  # Statusline
 #      neco-ghc
       (plugin "TimUntersberger/neogit")  # Git tool
@@ -73,6 +76,7 @@ in {
 
     extraPackages = with pkgs; [
       nodePackages.pyright
+      nodePackages.pyright
       gcc
       nerdfonts
       svls  # SystemVerilog Language Server
@@ -84,13 +88,5 @@ in {
     extraPython3Packages = (ps: with ps; [
     ]);
 
-    extraConfig = builtins.concatStringsSep "\n" [
-      (lib.strings.fileContents ./config/nvim/config.vim)
-      ''
-        lua << EOF
-        ${lib.strings.fileContents ./config/nvim/config.lua}
-        EOF
-      ''
-    ];
   };
 }

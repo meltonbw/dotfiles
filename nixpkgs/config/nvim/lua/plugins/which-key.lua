@@ -28,18 +28,18 @@ wk.register({
 })
 
 -- Insert Maps
-wk.register({
-  s = {
-    name = "snippets",
-    i = { "<Plug>(coc-snippets-expand)",         "Trigger snippet expand" },
-    n = { "<Plug>(coc-snippets-expand-jump)",    "Expand and jump (make expand higher priority)" },
-  },
-  [','] = { ",",                                 "Comma escape" },
-},
-{
-  prefix = "<leader>",
-  mode = "i"
-})
+--wk.register({
+--  s = {
+--    name = "snippets",
+--    i = { "<Plug>(coc-snippets-expand)",         "Trigger snippet expand" },
+--    n = { "<Plug>(coc-snippets-expand-jump)",    "Expand and jump (make expand higher priority)" },
+--  },
+--  [','] = { ",",                                 "Comma escape" },
+--},
+--{
+--  prefix = "<leader>",
+--  mode = "i"
+--})
 
 -- Visual Maps
 wk.register({
