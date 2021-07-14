@@ -17,11 +17,8 @@ vim.cmd("noremap! <F1> <ESC>")
 opt.shell = "zsh"
 
 -- Color settings
-opt.syntax = "enable"
 opt.termguicolors = true
 vim.cmd("colorscheme solarized")
-opt.background = "dark"
-vim.cmd("filetype plugin indent on")
 
 -- Tab Settings
 opt.smarttab = true -- Insert tabstop number of spaces
@@ -58,8 +55,6 @@ opt.smartcase = true -- Only case-sensitive when search has upper case character
 opt.wrapscan = true -- Searches wrap around the end of the file
 opt.scrolloff = 5 -- Show a number of lines when scrolling for context
 opt.gdefault = true -- The 'g' flag is set by default for substitute
-opt.incsearch = true -- Dynamically update search highlighting as query is typed
-opt.hlsearch = true -- Highlight all the matches of previous searches
 opt.dictionary = "/usr/share/dict/words" -- Location of the dictionary
 
 -- Movement settings
