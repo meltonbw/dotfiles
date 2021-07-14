@@ -50,7 +50,7 @@ in {
 #      coc-yaml
 #      fzf-vim
 #      haskell-vim
-      (pluginGit "lua" "lukas-reineke/indent-blankline.nvim")  # Indent guides
+      (plugin "lukas-reineke/indent-blankline.nvim")  # Indent guides
       (plugin "nvim-lua/lsp-status.nvim")  # LSP status line component
       (plugin "hoob3rt/lualine.nvim")  # Statusline
 #      neco-ghc
