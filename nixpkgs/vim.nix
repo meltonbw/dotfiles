@@ -67,6 +67,7 @@ in {
       (plugin "p00f/nvim-ts-rainbow")  # Rainbow parentheses
       (plugin "nvim-lua/plenary.nvim")  # Lua library for Neovim
       (plugin "nvim-lua/popup.nvim")  # Lua library for popups
+      (plugin "phaazon/hop.nvim")  # Quick navigation written in lua
 #      tagbar
       (plugin "nvim-telescope/telescope.nvim")  # File search utility
       vim-nix

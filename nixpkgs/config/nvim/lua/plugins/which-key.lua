@@ -20,6 +20,15 @@ wk.register({
     h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>",     "Lists available help tags" },
     s = { "<cmd>lua require('telescope.builtin').grep_string()<cr>",   "Searches for the string under your cursor in your CWD" },
   },
+  h = {
+    name = "hop",
+    b = { "<cmd>lua require'hop'.hint_char2()<cr>",       "Hop to bigram (two characters)" },
+    c = { "<cmd>lua require'hop'.hint_char1()<cr>",       "Hop to character" },
+    l = { "<cmd>lua require'hop'.hint_lines()<cr>",       "Hop to line" },
+    p = { "<cmd>lua require'hop'.hint_patterns()<cr>",    "Hop to pattern" },
+    r = { "<cmd>lua require'hop'.refine_hints()<cr>",     "Refine hop hint" },
+    w = { "<cmd>lua require'hop'.hint_words()<cr>",       "Hop to word" },
+  },
   w = { "<C-w>",                                                       "Window commands", noremap=false },
 },
 {
