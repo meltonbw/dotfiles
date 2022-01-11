@@ -1,6 +1,9 @@
 { pkgs, config, lib, ... }:
 
 let
+  # A way to get unstable packages
+  unstable = import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
+
   # installs a vim plugin from git with a given tag / branch
   pluginGit = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "${lib.strings.sanitizeDerivationName repo}";
@@ -18,14 +21,17 @@ let
   # always installs latest version
   plugin = pluginGit "HEAD";
 in {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
+#  nixpkgs.overlays = [
+#    (import (builtins.fetchTarball {
+#      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+#    }))
+#  ];
 
 #  xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
   xdg.configFile."nvim/lua".source = config/nvim/lua;
+  xdg.configFile."nvim/init.vim".text = ''
+    lua require('init')
+  '';
 
   programs.neovim = {
     enable = true;
@@ -36,9 +42,10 @@ in {
     withNodeJs = true;
     withRuby = true;
 
-    package = pkgs.neovim-nightly;
+#    package = pkgs.neovim-nightly;
+    package = unstable.neovim-unwrapped;
 
-    extraConfig = "lua require('init') -- This is a repeat for some reason: ";
+#    extraConfig = "lua require('init') -- This is a repeat for some reason: ";
 
     plugins = with pkgs.vimPlugins; [
 #      coc-fzf

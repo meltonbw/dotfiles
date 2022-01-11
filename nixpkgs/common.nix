@@ -14,7 +14,7 @@ in {
   programs = {
     home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz;
     };
   };
 
@@ -27,7 +27,7 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home = {
-    stateVersion = "21.05";
+    stateVersion = "21.11";
     username = "${user}";
     homeDirectory = "${home}";
   };
@@ -49,6 +49,7 @@ in {
     gcc
     graphviz
     haskell-language-server
+    iperf2
     nerdfonts
     nmap
     python3  # Python3
