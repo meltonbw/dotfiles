@@ -14,7 +14,7 @@ local on_attach = function(client, bufnr)
       a = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Select a code action'},
       d = {
         name = 'Diagnostic actions..',
-        d = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Open diagnostics window for current line'},
+        d = {'<cmd>lua vim.diagnostic.open_float()<CR>', 'Open diagnostics window for current line'},
         e = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'Go to previous diagnostic'},
         n = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Go to next diagnostic'},
       },
@@ -24,7 +24,7 @@ local on_attach = function(client, bufnr)
       h = {'<Cmd>lua vim.lsp.buf.hover()<CR>', 'Display hover information for symbol'},
       H = {'<Cmd>lua vim.lsp.buf.hover();vim.lsp.buf.hover()<CR>', 'Jump into hover information for symbol'},
       i = {'<cmd>lua vim.lsp.buf.implementation()<CR>', 'List implementations for symbol'},
-      l = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set location list'},
+      l = {'<cmd>lua vim.diagnostic.setloclist()<CR>', 'Set location list'},
       r = {'<cmd>lua vim.lsp.buf.references()<CR>', 'List references for symbol'},
       R = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename all symbol references'},
       s = {'<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Display signature information for symbol'},

@@ -39,11 +39,11 @@ self: super: {
     inherit (builtins) replaceStrings;
     name = "iTerm2";
     appname = "iTerm";
-    version = "3.4.8";
+    version = "3.4.10";
     sourceRoot = "iTerm.app";
     src = super.fetchurl {
       url = "https://iterm2.com/downloads/stable/iTerm2-${replaceStrings ["\."] ["_"] version}.zip";
-      sha256 = "29e1cf80dff3cd63e23e42d781969d74a7fed3aadebc756d0001942e40bb376f";
+      sha256 = "40a62193582dd7c54e6f27e509bdb887ec864513b53d4003763d9e167e44a921";
     };
     description = "iTerm2 is a replacement for Terminal and the successor to iTerm";
     homepage = https://www.iterm2.com;
