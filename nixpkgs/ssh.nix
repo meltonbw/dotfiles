@@ -21,7 +21,7 @@
         };
       };
       "logindig2" = {
-        hostname = "10.10.10.125";
+        hostname = "hq-logd02";
         user = "ben";
         extraOptions = {
 #          RemoteCommand = "tmux -CC new -A -s sesh";
