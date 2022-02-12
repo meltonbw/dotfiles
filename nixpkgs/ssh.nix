@@ -21,7 +21,7 @@
         };
       };
       "logindig2" = {
-        hostname = "10.10.10.125";
+        hostname = "work-host.example.invalid";
         user = "ben";
         extraOptions = {
 #          RemoteCommand = "tmux -CC new -A -s sesh";
