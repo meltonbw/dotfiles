@@ -41,8 +41,9 @@ in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    fswatch
     iTerm2
-    xquartz
+#    xquartz
   ];
 
   # Use a custom configuration.nix location.
