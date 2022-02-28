@@ -29,7 +29,11 @@ wk.register({
     r = { "<cmd>lua require'hop'.refine_hints()<cr>",     "Refine hop hint" },
     w = { "<cmd>lua require'hop'.hint_words()<cr>",       "Hop to word" },
   },
-  w = { "<C-w>",                                                       "Window commands", noremap=false },
+  w = { "<C-w>", "Window commands", noremap=false },
+  q = {
+    name = "quit",
+    b = { "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", "Close buffer without closing split" },
+  },
 },
 {
   prefix = "<leader>",
