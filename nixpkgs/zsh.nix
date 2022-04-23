@@ -14,7 +14,7 @@
 
     shellAliases = {
       # Reload nix/home-manager configuration
-      nix-reload = "home-manager switch && source ~/.zshrc";
+      nix-reload = "home-manager switch && omz reload";
 
       # Nix garbage collection
       nix-garbage-collect = "nix-collect-garbage";
@@ -43,7 +43,6 @@
         "pyenv"
         "python"
         "screen"
-        "zsh_reload"
       ];
     };
 
