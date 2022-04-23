@@ -37,6 +37,7 @@ in {
     ./git.nix
     ./ssh.nix
     ./tmux.nix
+    ./unison.nix
     ./vim.nix
     ./zsh.nix
   ];
@@ -44,6 +45,7 @@ in {
   home.packages = with pkgs; [
     autoconf  # for building configure scripts
     bash  # /bin/bash
+    cargo  # Rust project builder
     curl
     ffmpeg
     gcc
@@ -58,6 +60,7 @@ in {
     svls  # SystemVerilog Language Server
     svlint  # SystemVerilog linter
     tree  # file tree viewer
+    unison  # File synchronization
     wget
   ] ++ pythonPackages;
 
