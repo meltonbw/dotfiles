@@ -1,28 +1,66 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { }, -- List of parsers to ignore installing
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "lua", "python", "verilog" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { "javascript" },
+
   highlight = {
-    enable = true,  -- false will disable the whole extension
-    custom_captures = {
-    },
-    disable = { },  -- list of language that will be disabled
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
   },
+
+  -- Indentation based on treesitter for the = operator. NOTE: This is an experimental feature.
   indent = {
     enable = true
   },
-  textsubjects = {
+
+  -- Incremental selection based on the named nodes from the grammar.
+  incremental_selection = {
     enable = true,
     keymaps = {
-      ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-big',
-    }
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
   },
+
+  textsubjects = {
+      enable = true,
+--      prev_selection = ',', -- (Optional) keymap to select the previous selection
+      keymaps = {
+          ['.'] = 'textsubjects-smart',
+          [';'] = 'textsubjects-container-outer',
+          ['i;'] = 'textsubjects-container-inner',
+      },
+  },
+
+  -- Multicolored highlighting for brackets/parens
   rainbow = {
     enable = true,
-    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
---    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
-  },
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  }
 }
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.verilog.used_by = "systemverilog"
+local ft_to_parser = require "nvim-treesitter.parsers".filetype_to_parsername
+ft_to_parser.verilog = "systemverilog"  -- Use verilog parser for SystemVerilog
