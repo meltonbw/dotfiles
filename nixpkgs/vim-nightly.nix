@@ -21,6 +21,12 @@ let
   # always installs latest version
   plugin = pluginGit "HEAD";
 in {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
 #  xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
   xdg.configFile."nvim/lua".source = config/nvim/lua;
   xdg.configFile."nvim/init.vim".text = ''
@@ -36,7 +42,7 @@ in {
     withNodeJs = true;
     withRuby = true;
 
-    package = unstable.neovim-unwrapped;
+    package = pkgs.neovim-nightly;
 
 #    extraConfig = "lua require('init') -- This is a repeat for some reason: ";
 
@@ -80,8 +86,8 @@ in {
       nodePackages.pyright
       gcc
       nerdfonts
-      #svls  # SystemVerilog Language Server
-      #svlint  # SystemVerilog linter
+      svls  # SystemVerilog Language Server
+      svlint  # SystemVerilog linter
       tree-sitter
       ripgrep
     ];
