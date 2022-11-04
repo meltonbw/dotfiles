@@ -17,7 +17,6 @@ require'nvim-tree'.setup {
     adaptive_size = false,
     centralize_selection = false,
     width = 40,
-    height = 40,
     hide_root_folder = false,
     side = "left",
     preserve_window_proportions = false,
@@ -115,7 +114,7 @@ require'nvim-tree'.setup {
   },
   filesystem_watchers = {
     enable = false,
-    interval = 100,
+    debounce_delay = 100,
   },
   git = {
     enable = true,

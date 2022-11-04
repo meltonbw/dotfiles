@@ -43,8 +43,8 @@ in {
   environment.systemPackages = with pkgs; [
     fswatch
     iTerm2
-    vlc
-    xquartz
+#    vlc
+#    xquartz
   ];
 
   # Use a custom configuration.nix location.

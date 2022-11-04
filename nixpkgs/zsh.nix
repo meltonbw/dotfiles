@@ -21,12 +21,18 @@
 
       # See which Nix packages are installed
       nix-installed = "nix-env --query --installed";
+
+      # Youtube Downloader
+      youtube-dl = "youtube-dl --restrict-filenames";
     };
 
     initExtra = ''
       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
       export KEYTIMEOUT=1
+      export NIX_REMOTE=daemon  # Use Nix daemon
       bindkey -v
+      
+      export PATH=/Users/ben/.local/bin:$PATH
     '';
 
     oh-my-zsh = {

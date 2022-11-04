@@ -47,10 +47,10 @@ in {
     bash  # /bin/bash
     cargo  # Rust project builder
     curl
-    ffmpeg
+    ffmpeg_5
     gcc
     graphviz
-    haskell-language-server
+#    haskell-language-server
     iperf2
     nerdfonts
     nmap
