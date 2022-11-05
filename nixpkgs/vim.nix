@@ -51,6 +51,7 @@ in {
 #      fzf-vim
 #      haskell-vim
       (plugin "hrsh7th/cmp-buffer")  # Nvim-cmp support for buffer words
+      (plugin "hrsh7th/cmp-cmdline")  # Nvim-cmp support for nvim command mode and search
       (plugin "saadparwaiz1/cmp_luasnip")  # Nvim-cmp support for luasnip
       (plugin "hrsh7th/cmp-nvim-lsp")  # Nvim-cmp support for nvim LSP
       (plugin "hrsh7th/cmp-path")  # Nvim-cmp support for filesystem paths

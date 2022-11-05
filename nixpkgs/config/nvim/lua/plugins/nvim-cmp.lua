@@ -5,6 +5,7 @@ local luasnip = require('luasnip')
 
 local select_opts = {behavior = cmp.SelectBehavior.Select}
 
+
 cmp.setup({
   -- Callback function for snippets
   snippet = {
@@ -101,5 +102,19 @@ cmp.setup({
         fallback()
       end
     end, {'i', 's'}),
+  },
+})
+
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
   },
 })
