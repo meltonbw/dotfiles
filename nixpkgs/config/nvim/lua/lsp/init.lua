@@ -4,6 +4,14 @@ local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
 local lsp_cfg = require('lspconfig')
+local lsp_defaults = lsp_cfg.util.default_config
+
+-- Setup default capabilities for nvim-cmp
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lsp_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
 
 -- Default on_attach callback
 local on_attach = function(client, bufnr)
