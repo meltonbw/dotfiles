@@ -50,13 +50,19 @@ in {
 #      coc-yaml
 #      fzf-vim
 #      haskell-vim
+      (plugin "hrsh7th/cmp-buffer")  # Nvim-cmp support for buffer words
+      (plugin "saadparwaiz1/cmp_luasnip")  # Nvim-cmp support for luasnip
+      (plugin "hrsh7th/cmp-nvim-lsp")  # Nvim-cmp support for nvim LSP
+      (plugin "hrsh7th/cmp-path")  # Nvim-cmp support for filesystem paths
       (plugin "lukas-reineke/indent-blankline.nvim")  # Indent guides
       (plugin "nvim-lua/lsp-status.nvim")  # LSP status line component
       (plugin "hoob3rt/lualine.nvim")  # Statusline
+      (plugin "L3MON4D3/LuaSnip")  # LuaSnip snippets
 #      neco-ghc
       (plugin "TimUntersberger/neogit")  # Git tool
 #      nerdcommenter
 #      nerdtree
+      (plugin "hrsh7th/nvim-cmp")  # Completion engine
       (plugin "yamatsum/nvim-cursorline")  # Cursorline highlighter
       (plugin "neovim/nvim-lspconfig")  # Language server configurator
       (plugin "kyazdani42/nvim-web-devicons")  # Icon package
