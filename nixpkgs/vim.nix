@@ -43,8 +43,8 @@ in {
       nodePackages.pyright
       gcc
       nerdfonts
-      #svls  # SystemVerilog Language Server
-      #svlint  # SystemVerilog linter
+      svls  # SystemVerilog Language Server
+      svlint  # SystemVerilog linter
       tree-sitter
       ripgrep
     ];
