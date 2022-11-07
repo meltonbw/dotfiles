@@ -8,8 +8,8 @@ let
   };
 in {
   # Nix config
-  nix.maxJobs = "auto";
-  nix.buildCores = 0;
+  nix.settings.max-jobs = "auto";
+  nix.settings.cores = 0;
   nix.package = pkgs.nix;
   nixpkgs.config.allowUnfree = true;
 

@@ -28,6 +28,8 @@ in {
   '';
 
   programs.neovim = {
+    package = unstable.neovim-unwrapped;
+
     enable = true;
     viAlias = true;
     vimAlias = true;
@@ -36,9 +38,19 @@ in {
     withNodeJs = true;
     withRuby = true;
 
-    package = unstable.neovim-unwrapped;
+    extraPackages = with pkgs; [
+      nodePackages.pyright
+      nodePackages.pyright
+      gcc
+      nerdfonts
+      #svls  # SystemVerilog Language Server
+      #svlint  # SystemVerilog linter
+      tree-sitter
+      ripgrep
+    ];
 
-#    extraConfig = "lua require('init') -- This is a repeat for some reason: ";
+    extraPython3Packages = (ps: with ps; [
+    ]);
 
     plugins = with pkgs.vimPlugins; [
 #      coc-fzf
@@ -52,9 +64,13 @@ in {
 #      haskell-vim
       (plugin "hrsh7th/cmp-buffer")  # Nvim-cmp support for buffer words
       (plugin "hrsh7th/cmp-cmdline")  # Nvim-cmp support for nvim command mode and search
+      (plugin "uga-rosa/cmp-dynamic")  # Nvim-cmp support for dynamic completions
+      (plugin "tzachar/fuzzy.nvim")  # Abstraction layer for fzf and fzy
+      (plugin "tzachar/cmp-fuzzy-buffer")  # Nvim-cmp fuzzy finder buffer source
       (plugin "saadparwaiz1/cmp_luasnip")  # Nvim-cmp support for luasnip
       (plugin "hrsh7th/cmp-nvim-lsp")  # Nvim-cmp support for nvim LSP
       (plugin "hrsh7th/cmp-path")  # Nvim-cmp support for filesystem paths
+      (plugin "phaazon/hop.nvim")  # Quick navigation written in lua
       (plugin "lukas-reineke/indent-blankline.nvim")  # Indent guides
       (plugin "nvim-lua/lsp-status.nvim")  # LSP status line component
       (plugin "hoob3rt/lualine.nvim")  # Statusline
@@ -74,27 +90,12 @@ in {
       (plugin "p00f/nvim-ts-rainbow")  # Rainbow parentheses
       (plugin "nvim-lua/plenary.nvim")  # Lua library for Neovim
       (plugin "nvim-lua/popup.nvim")  # Lua library for popups
-      (plugin "phaazon/hop.nvim")  # Quick navigation written in lua
 #      tagbar
       (plugin "nvim-telescope/telescope.nvim")  # File search utility
+      unstable.vimPlugins.telescope-fzf-native-nvim
       vim-nix
       (plugin "meltonbw/vim-snippets")  # Code snippets
       (plugin "folke/which-key.nvim")  # Vim key command reference
     ];
-
-    extraPackages = with pkgs; [
-      nodePackages.pyright
-      nodePackages.pyright
-      gcc
-      nerdfonts
-      #svls  # SystemVerilog Language Server
-      #svlint  # SystemVerilog linter
-      tree-sitter
-      ripgrep
-    ];
-
-    extraPython3Packages = (ps: with ps; [
-    ]);
-
   };
 }

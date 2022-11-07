@@ -1,6 +1,8 @@
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 local cmp = require('cmp')
+local compare = require('cmp.config.compare')
+
 local luasnip = require('luasnip')
 
 local select_opts = {behavior = cmp.SelectBehavior.Select}
@@ -14,12 +16,29 @@ cmp.setup({
     end
   },
   -- The sources for the auto-completion list
-  sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'luasnip', keyword_length = 2},
-  },
+  sources = cmp.config.sources({
+    { name = 'path' },
+    { name = 'luasnip', keyword_length = 2 },
+    { name = 'dynamic', keyword_length = 2 },
+    }, {
+    { name = 'nvim_lsp', keyword_length = 3 },
+    { name = 'fuzzy_buffer', keyword_length = 3 },
+  }),
+  -- Fix sorting of fuzzy_buffer results
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			require('cmp_fuzzy_buffer.compare'),
+			compare.offset,
+			compare.exact,
+			compare.score,
+			compare.recently_used,
+			compare.kind,
+			compare.sort_text,
+			compare.length,
+			compare.order,
+		}
+	},
   -- Basic window layout
   window = {
     documentation = cmp.config.window.bordered()
@@ -28,13 +47,15 @@ cmp.setup({
   formatting = {
     -- Order of fields in the completion menu
     fields = {'menu', 'abbr', 'kind'},
+
     -- Callback function for formatting the completion menu
     format = function(entry, item)
       local menu_icon = {
-        nvim_lsp = 'λ',
-        luasnip = '⋗',
-        buffer = 'Ω',
-        path = '🖫',
+        path = '',
+        nvim_lsp = '',
+        fuzzy_buffer = '',
+        luasnip = '', 
+        dynamic = '',
       }
 
       item.menu = menu_icon[entry.source.name]
@@ -115,6 +136,32 @@ cmp.setup.cmdline(':', {
 
 cmp.setup.cmdline('/', {
   sources = {
-    { name = 'buffer' }
+    { name = 'fuzzy_buffer' },
+  },
+})
+
+
+-- cmp-dynamic setup
+local Date = require("cmp_dynamic.utils.date")
+
+require("cmp_dynamic").setup({
+  {
+    label = "today",
+    insertText = 1,
+    cb = {
+        function()
+            return os.date("%Y/%m/%d")
+        end,
+    },
+  },
+  {
+    label = "next Monday",
+    insertText = 1,
+    cb = {
+        function()
+            return Date.new():add_date(7):day(1):format("%Y/%m/%d")
+        end,
+    },
+    resolve = true, -- default: false
   },
 })
