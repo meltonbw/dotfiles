@@ -72,6 +72,7 @@ in {
       (plugin "hrsh7th/cmp-path")  # Nvim-cmp support for filesystem paths
       (plugin "phaazon/hop.nvim")  # Quick navigation written in lua
       (plugin "lukas-reineke/indent-blankline.nvim")  # Indent guides
+      (plugin "ggandor/leap.nvim")  # Motions
       (plugin "nvim-lua/lsp-status.nvim")  # LSP status line component
       (plugin "hoob3rt/lualine.nvim")  # Statusline
       (plugin "L3MON4D3/LuaSnip")  # LuaSnip snippets
@@ -90,6 +91,7 @@ in {
       (plugin "p00f/nvim-ts-rainbow")  # Rainbow parentheses
       (plugin "nvim-lua/plenary.nvim")  # Lua library for Neovim
       (plugin "nvim-lua/popup.nvim")  # Lua library for popups
+      (plugin "tpope/vim-repeat")  # Repeat functionality for plugins
 #      tagbar
       (plugin "nvim-telescope/telescope.nvim")  # File search utility
       unstable.vimPlugins.telescope-fzf-native-nvim
