@@ -1,5 +1,6 @@
 require('plugins.hop')              -- Neovim motions on speed!
 require('plugins.indent-blankline') -- Indentation markers
+require('plugins.leap')             -- Neovim motions
 require('plugins.lualine')          -- Status line
 require('plugins.neogit')           -- Git integration
 require('plugins.nvim-cmp')         -- Completion engine
