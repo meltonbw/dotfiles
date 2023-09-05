@@ -143,7 +143,7 @@ cmp.setup.cmdline('/', {
 
 -- cmp-dynamic setup
 local Date = require("cmp_dynamic.utils.date")
-
+--[[
 require("cmp_dynamic").setup({
   {
     label = "today",
@@ -165,3 +165,4 @@ require("cmp_dynamic").setup({
     resolve = true, -- default: false
   },
 })
+--]]
