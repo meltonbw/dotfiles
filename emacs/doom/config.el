@@ -63,7 +63,7 @@
 ;; Assign modifier keys and disable passing Control characters to the system, to avoid that =C-M-space= launches the Character viewer instead of running =mark-sexp=.
 
 ;; [[file:config.org::*UI behavior][UI behavior:1]]
-(cond (IS-MAC
+(cond ((featurep :system 'macos)
        (setq mac-command-modifier       'meta
              mac-option-modifier        'alt
              mac-right-option-modifier  'alt
@@ -75,13 +75,13 @@
 ;; Doom configures =auth-sources= by default to include the Keychain on macOS, but it puts it at the beginning of the list. This causes creation of auth items to fail because the macOS Keychain sources do not support creation yet. Reverse it to leave =~/.authinfo.gpg= at the beginning.
 
 ;; [[file:config.org::*Authentication source order][Authentication source order:1]]
-(cond (IS-MAC
+(cond ((featurep :system 'macos)
        (after! auth-source
          (setq auth-sources (nreverse auth-sources)))))
 ;; Authentication source order:1 ends here
 
 ;; [[file:config.org::*Capturing links to external applications][Capturing links to external applications:2]]
-(when IS-MAC
+(when (featurep :system 'macos)
   (use-package! org-mac-link
     :after org
     :config
@@ -108,7 +108,7 @@
 ;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-(if IS-MAC
+(if (featurep :system 'macos)
     (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 11))
   (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)))
 ;;
