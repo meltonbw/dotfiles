@@ -65,7 +65,7 @@
 ;; =org-mac-link= implements the ability to grab links from different Mac apps and insert them in the file. Bind =C-c g= to call =org-mac-grab-link= to choose an application and insert a link.
 
 ;; [[file:config.org::*Capturing links to external applications][Capturing links to external applications:1]]
-(when IS-MAC
+(when (featurep :system 'macos)
   (package! org-mac-link))
 ;; Capturing links to external applications:1 ends here
 
