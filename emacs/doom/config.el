@@ -408,7 +408,7 @@
 
 ;; Behavior
 
-;; Automatically generate a newline after typing =;=, but don't tab to a comment. We have =evil-mode='s =Shift-A= for that.
+;; Automatically generate a newline after typing =;=, but don't tab to a comment. We have =evil-mode='s =A= command for that.
 
 ;; [[file:config.org::*Behavior][Behavior:1]]
 (after! (verilog-mode)
@@ -430,7 +430,7 @@
 
 ;; Hierarchy
 
-;; Let's use =Verilog-Perl='s =vhier= tool to extract hierarchy if it is available, otherwise use =tree-sitter=.
+;; Let's use [[https://github.com/veripool/verilog-perl][verilog-perl]]'s [[https://metacpan.org/pod/vhier][vhier]] tool to extract hierarchy if it is available, otherwise use =tree-sitter=.
 
 ;; [[file:config.org::*Hierarchy][Hierarchy:1]]
 (after! (verilog-ext)
