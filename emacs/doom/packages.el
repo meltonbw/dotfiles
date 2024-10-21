@@ -114,9 +114,17 @@
 (package! verilog-mode)
 ;; [[https://github.com/veripool/verilog-mode][Verilog-Mode]]:1 ends here
 
+;; [[https://github.com/gmlarumbe/verilog-ts-mode][Verilog-Ts-Mode]]
+
+;; Provides syntax highlighting, indentation, =imenu=, =which-func=, navigation and basic beautify and completion features. It is derived from =verilog-mode= making AUTOs and other utilities still available.
+
+;; [[file:config.org::*\[\[https:/github.com/gmlarumbe/verilog-ts-mode\]\[Verilog-Ts-Mode\]\]][[[https://github.com/gmlarumbe/verilog-ts-mode][Verilog-Ts-Mode]]:1]]
+(package! verilog-ts-mode)
+;; [[https://github.com/gmlarumbe/verilog-ts-mode][Verilog-Ts-Mode]]:1 ends here
+
 ;; [[https://github.com/gmlarumbe/verilog-ext][Verilog-Ext]]
 
-;; Provides advanced editing features for Verilog or SystemVerilog code, including tree-sitter.
+;; Provides advanced editing features for Verilog or SystemVerilog code.
 
 ;; [[file:config.org::*\[\[https:/github.com/gmlarumbe/verilog-ext\]\[Verilog-Ext\]\]][[[https://github.com/gmlarumbe/verilog-ext][Verilog-Ext]]:1]]
 (package! verilog-ext)
