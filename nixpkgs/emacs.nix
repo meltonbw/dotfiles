@@ -44,6 +44,8 @@
     gnugrep
     gnutls
     imagemagick
+    ispell
+    nerdfonts
     nixfmt
     nodePackages.javascript-typescript-langserver
     pandoc
@@ -51,8 +53,6 @@
     shellcheck
     sqlite
     tree-sitter
-    tree-sitter-grammars.tree-sitter-nix
-    tree-sitter-grammars.tree-sitter-verilog
     zstd
   ];
 }
