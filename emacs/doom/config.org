@@ -459,7 +459,7 @@ I don't like ligatures in certain modes, such as =verilog-mode=. So, let's negat
 (after! ligature
   (setq ligature-ignored-major-modes
         (cl-union ligature-ignored-major-modes '(verilog-mode
-                                                 verilog-tsmode))))
+                                                 verilog-ts-mode))))
 #+end_src
 
 *** Key Bindings
@@ -615,57 +615,166 @@ Provides basic support for Verilog editing, including autos.
 (package! verilog-mode)
 #+end_src
 
+Load the module by default for =*.v=, =*.vh=, =*.sv= and =*.svh= files.
+#+begin_src emacs-lisp
+(use-package! verilog-mode
+  :mode "\\.s?vh?\\'")
+#+end_src
+
+*** [[https://github.com/gmlarumbe/verilog-ts-mode][Verilog-Ts-Mode]]
+
+Provides syntax highlighting, indentation, =imenu=, =which-func=, navigation and basic beautify and completion features. It is derived from =verilog-mode= making AUTOs and other utilities still available.
+#+begin_src emacs-lisp :tangle packages.el
+(package! verilog-ts-mode)
+#+end_src
+
+Load the module only if tree-sitter support is available. We want to use tree-sitter by default for =*.v=, =*.sv=, =*.vh=, and =*.svh= files.
+#+begin_src emacs-lisp
+(use-package! verilog-ts-mode
+  :if (treesit-available-p)
+  :mode "\\.s?vh?\\'")
+#+end_src
+
 *** [[https://github.com/gmlarumbe/verilog-ext][Verilog-Ext]]
 
-Provides advanced editing features for Verilog or SystemVerilog code, including tree-sitter.
+Provides advanced editing features for Verilog or SystemVerilog code.
 #+begin_src emacs-lisp :tangle packages.el
 (package! verilog-ext)
 #+end_src
 
-This block selects enabled features.
+=verilog-ext-feature-list= selects enabled features.
 #+begin_src emacs-lisp
-;; Can also be set through `M-x RET customize-group RET verilog-ext':
-;;  - Verilog Ext Feature List (provides info of different features)
-;; Comment out/remove the ones you do not need
-(setq verilog-ext-feature-list
-      '(font-lock
-        xref
-        capf
-        hierarchy
-        eglot
-        lsp
-;        lsp-bridge
-;        lspce
-        flycheck
-        beautify
-        navigation
-        template
-        formatter
-        compilation
-        imenu
-        which-func
-        hideshow
-        typedefs
-        time-stamp
-        block-end-comments
-        ports))
+(use-package! verilog-ext
+  :hook ((verilog-mode . verilog-ext-mode))
+  :init
+  ;; Can also be set through `M-x RET customize-group RET verilog-ext':
+  ;; Comment out/remove the ones you do not need
+  (setq verilog-ext-feature-list
+        '(font-lock
+          xref
+          capf
+          hierarchy
+          eglot
+          lsp
+;          lsp-bridge
+;          lspce
+          flycheck
+          beautify
+          navigation
+          template
+          formatter
+          compilation
+          imenu
+          which-func
+          hideshow
+          typedefs
+          time-stamp
+          block-end-comments
+          ports))
+  :config
+  (verilog-ext-mode-setup))
 #+end_src
 
-Then we load the module and set it up.
+*** Appearance
+**** Highlighting
+
+Let's have pretty syntax.
 #+begin_src emacs-lisp
-(require 'verilog-ext)
-(verilog-ext-mode-setup)
-(add-hook 'verilog-mode-hook #'verilog-ext-mode)
+(after! (verilog-mode)
+  (setq verilog-fontify-variables               't
+        verilog-highlight-grouping-keywords     't
+        verilog-highlight-includes              't
+        verilog-highlight-max-lookahead     100000
+        verilog-highlight-modules               't))
 #+end_src
 
-We want to use tree-sitter by default for =*.v=, =*.sv=, =*.vh=, and =*.svh= files.
+**** Indentation
+
+Always indent and match indentation with each item whenever possible, but I don't like =begin= indented after an =if=.
 #+begin_src emacs-lisp
-;; To use `verilog-ts-mode' as the default major-mode also add the line below:
-(add-to-list 'auto-mode-alist '("\\.s?vh?\\'" . verilog-ts-mode))
+(after! (verilog-mode)
+  (setq verilog-auto-indent-on-newline           't
+        verilog-indent-lists                     't
+        verilog-indent-begin-after-if           nil
+        verilog-indent-class-inside-pkg          't
+        verilog-indent-declaration-macros       nil
+        verilog-indent-ignore-multiline-defines nil
+        verilog-tab-always-indent                't))
 #+end_src
 
-Finally, we set some miscellaneous options.
+Two spaces of indentation in general.
 #+begin_src emacs-lisp
-(setq verilog-ext-tags-backend 'builtin)  ;; Use tree-sitter as the tags backend
-(setq verilog-ext-hierarchy-backend 'vhier)   ;; Use vhier as the hierarchy backend
+(after! (verilog-mode)
+  (setq verilog-indent-level             2
+        verilog-indent-level-behavioral  2
+        verilog-indent-level-declaration 2
+        verilog-indent-level-directive   2
+        verilog-indent-level-module      2
+        verilog-case-indent              2
+        verilog-cexp-indent              2))
+
+(after! (verilog-ts-mode)
+  (setq verilog-ts-indent-level 2))
+
+(after! (verilog-ext)
+  (setq verilog-ext-formatter-indentation-spaces 2))
 #+end_src
+
+**** Alignment
+
+In general, automatically align expressions whenever possible.
+#+begin_src emacs-lisp
+(after! (verilog-mode)
+  (setq verilog-auto-lineup              'all
+        verilog-align-assign-expr          't
+        verilog-align-decl-expr-comments   't
+        verilog-align-comment-distance      2
+        verilog-align-ifelse               't))
+
+(after! (verilog-ts-mode)
+  (setq verilog-ts-align-decl-expr-comments 't))
+#+end_src
+
+*** Behavior
+
+Automatically generate a newline after typing =;=, but don't tab to a comment. We have =evil-mode='s =Shift-A= for that.
+#+begin_src emacs-lisp
+(after! (verilog-mode)
+  (setq verilog-auto-newline    't
+        verilog-tab-to-comment nil))
+#+end_src
+
+*** Completion
+
+Let's use =tree-sitter= for completion if it is available.
+#+begin_src emacs-lisp
+(after! (verilog-ext)
+  (setq verilog-ext-tags-backend
+        (if (treesit-available-p)
+            'tree-sitter
+          'builtin)))
+#+end_src
+
+*** Hierarchy
+
+Let's use =Verilog-Perl='s =vhier= tool to extract hierarchy if it is available, otherwise use =tree-sitter=.
+#+begin_src emacs-lisp
+(after! (verilog-ext)
+  (setq verilog-ext-hierarchy-backend
+        (cond ((executable-find "vhier") 'vhier)
+              ((treesit-available-p) 'tree-sitter)
+              (t 'builtin))))
+#+end_src
+
+*** Templates
+
+Set some sane defaults for templating.
+#+begin_src emacs-lisp
+(after! (verilog-ext)
+  (setq verilog-ext-template-clock              "clk"
+        verilog-ext-template-reset            "rst_n"
+        verilog-ext-template-reset-active-low      't))
+#+end_src
+
+*** Linting
+
