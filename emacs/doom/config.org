@@ -737,7 +737,7 @@ In general, automatically align expressions whenever possible.
 
 *** Behavior
 
-Automatically generate a newline after typing =;=, but don't tab to a comment. We have =evil-mode='s =Shift-A= for that.
+Automatically generate a newline after typing =;=, but don't tab to a comment. We have =evil-mode='s =A= command for that.
 #+begin_src emacs-lisp
 (after! (verilog-mode)
   (setq verilog-auto-newline    't
@@ -757,7 +757,7 @@ Let's use =tree-sitter= for completion if it is available.
 
 *** Hierarchy
 
-Let's use =Verilog-Perl='s =vhier= tool to extract hierarchy if it is available, otherwise use =tree-sitter=.
+Let's use [[https://github.com/veripool/verilog-perl][verilog-perl]]'s [[https://metacpan.org/pod/vhier][vhier]] tool to extract hierarchy if it is available, otherwise use =tree-sitter=.
 #+begin_src emacs-lisp
 (after! (verilog-ext)
   (setq verilog-ext-hierarchy-backend
