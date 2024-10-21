@@ -5,7 +5,7 @@ let
   unstable = import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
 
   # installs a vim plugin from git with a given tag / branch
-  pluginGit = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+  pluginGit = ref: repo: pkgs.vimUtils.buildVimPlugin {
     pname = "${lib.strings.sanitizeDerivationName repo}";
     version = ref;
     src = builtins.fetchGit {
@@ -13,7 +13,7 @@ let
       ref = ref;
     };
   };
-#  pluginNode = name: pkgs.vimUtils.buildVimPluginFrom2Nix {
+#  pluginNode = name: pkgs.vimUtils.buildVimPlugin {
 #    pname = name;
 #    inherit (nodePackages.${name}) version meta;
 #    src = "${nodePackages.${name}}/lib/node_modules/${name}";
