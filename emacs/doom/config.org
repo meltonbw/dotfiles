@@ -778,6 +778,19 @@ Set some sane defaults for templating.
 #+end_src
 
 *** Linting
+** [[https://codeberg.org/akib/emacs-eat][Eat]]
+
+Eat's name self-explanatory, it stands for "Emulate A Terminal". Eat is a terminal emulator. It can run most (if not all) full-screen terminal programs, including Emacs.
+#+begin_src emacs-lisp :tangle packages.el
+(package! eat)
+#+end_src
+
+Setup the module and defer loading until it is called.
+#+begin_src emacs-lisp
+(use-package! eat
+  :defer t)
+#+end_src
+
 ** TRAMP
 *** MS Windows
 **** [[https://emacs.stackexchange.com/questions/76120/how-can-i-use-tramps-ssh-on-windows-10-with-the-native-ssh-exe][Native SSH Pseudo-Terminal]]

@@ -451,6 +451,15 @@
         verilog-ext-template-reset-active-low      't))
 ;; Templates:1 ends here
 
+
+
+;; Setup the module and defer loading until it is called.
+
+;; [[file:config.org::*\[\[https:/codeberg.org/akib/emacs-eat\]\[Eat\]\]][[[https://codeberg.org/akib/emacs-eat][Eat]]:2]]
+(use-package! eat
+  :defer t)
+;; [[https://codeberg.org/akib/emacs-eat][Eat]]:2 ends here
+
 ;; [[https://emacs.stackexchange.com/questions/76120/how-can-i-use-tramps-ssh-on-windows-10-with-the-native-ssh-exe][Native SSH Pseudo-Terminal]]
 
 ;; Since no "pseudo-terminal" is allocated, the classic PS1 is missing and TRAMP does not detect the prompt. We have to adjust the login arguments.
