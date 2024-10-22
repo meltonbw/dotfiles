@@ -95,7 +95,7 @@
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       ;;vterm             ; the best terminal emulation in Emacs
+       vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -209,6 +209,6 @@
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
-       (:if (not (featurep :system 'windows-nt)) literate)  ; Windows Emacs doesn't work with literate at the moment
+       (:if (not (eq system-type 'windows-nt)) literate)  ; Windows Emacs doesn't work with literate at the moment
        (default +bindings +smartparens))
 ;; Modules:1 ends here
