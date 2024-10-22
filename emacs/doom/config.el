@@ -458,7 +458,7 @@
 ;; In order to force the allocation of a pseudo-terminal, we have to supply -tt as additional argument.
 
 ;; [[file:config.org::*\[\[https:/emacs.stackexchange.com/questions/76120/how-can-i-use-tramps-ssh-on-windows-10-with-the-native-ssh-exe\]\[Native SSH Pseudo-Terminal\]\]][[[https://emacs.stackexchange.com/questions/76120/how-can-i-use-tramps-ssh-on-windows-10-with-the-native-ssh-exe][Native SSH Pseudo-Terminal]]:1]]
-(when (eq system-type 'windows-nt)
+(when (featurep :system 'windows)
   (require 'cl-lib)
   (with-eval-after-load 'tramp
     (cl-pushnew '("-tt")
@@ -469,7 +469,7 @@
 
 ;; Company-Mode
 
-;; Setup the package. We want to disable =company-mode= for eshell because it really slows things down.
+;; Setup the package. We want to disable =company-mode= for =eshell-mode= because it really slows things down.
 
 ;; [[file:config.org::*Company-Mode][Company-Mode:1]]
 (use-package! company
