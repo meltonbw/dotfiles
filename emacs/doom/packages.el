@@ -129,3 +129,11 @@
 ;; [[file:config.org::*\[\[https:/github.com/gmlarumbe/verilog-ext\]\[Verilog-Ext\]\]][[[https://github.com/gmlarumbe/verilog-ext][Verilog-Ext]]:1]]
 (package! verilog-ext)
 ;; [[https://github.com/gmlarumbe/verilog-ext][Verilog-Ext]]:1 ends here
+
+;; [[https://codeberg.org/akib/emacs-eat][Eat]]
+
+;; Eat's name self-explanatory, it stands for "Emulate A Terminal". Eat is a terminal emulator. It can run most (if not all) full-screen terminal programs, including Emacs.
+
+;; [[file:config.org::*\[\[https:/codeberg.org/akib/emacs-eat\]\[Eat\]\]][[[https://codeberg.org/akib/emacs-eat][Eat]]:1]]
+(package! eat)
+;; [[https://codeberg.org/akib/emacs-eat][Eat]]:1 ends here
