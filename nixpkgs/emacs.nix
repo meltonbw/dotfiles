@@ -44,7 +44,7 @@
     gnugrep
     gnutls
     imagemagick
-    ispell
+    aspell
     nerdfonts
     nixfmt
     nodePackages.javascript-typescript-langserver
