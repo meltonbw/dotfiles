@@ -794,3 +794,13 @@ In order to force the allocation of a pseudo-terminal, we have to supply -tt as 
                                 (cdr (assoc "ssh" tramp-methods))))
                 :test #'equal)))
 #+end_src
+
+** Company-Mode
+
+Setup the package. We want to disable =company-mode= for eshell because it really slows things down.
+#+begin_src emacs-lisp
+(use-package! company
+  :hook (eshell-mode . (lambda ()
+                         "Company mode dramatically slows down eshell. Disable it."
+                         (company-mode -1))))
+#+end_src

@@ -466,3 +466,14 @@
                                 (cdr (assoc "ssh" tramp-methods))))
                 :test #'equal)))
 ;; [[https://emacs.stackexchange.com/questions/76120/how-can-i-use-tramps-ssh-on-windows-10-with-the-native-ssh-exe][Native SSH Pseudo-Terminal]]:1 ends here
+
+;; Company-Mode
+
+;; Setup the package. We want to disable =company-mode= for eshell because it really slows things down.
+
+;; [[file:config.org::*Company-Mode][Company-Mode:1]]
+(use-package! company
+  :hook (eshell-mode . (lambda ()
+                         "Company mode dramatically slows down eshell. Disable it."
+                         (company-mode -1))))
+;; Company-Mode:1 ends here
