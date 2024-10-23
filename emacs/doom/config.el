@@ -108,7 +108,7 @@
 ;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 11 :weight 'semi-light))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12 :weight 'semi-light))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -464,7 +464,7 @@
 
 ;; Since no "pseudo-terminal" is allocated, the classic PS1 is missing and TRAMP does not detect the prompt. We have to adjust the login arguments.
 
-;; In order to force the allocation of a pseudo-terminal, we have to supply -tt as additional argument.
+;; In order to force the allocation of a pseudo-terminal, we have to supply =-tt= as additional argument.
 
 ;; [[file:config.org::*\[\[https:/emacs.stackexchange.com/questions/76120/how-can-i-use-tramps-ssh-on-windows-10-with-the-native-ssh-exe\]\[Native SSH Pseudo-Terminal\]\]][[[https://emacs.stackexchange.com/questions/76120/how-can-i-use-tramps-ssh-on-windows-10-with-the-native-ssh-exe][Native SSH Pseudo-Terminal]]:1]]
 (when (featurep :system 'windows)
