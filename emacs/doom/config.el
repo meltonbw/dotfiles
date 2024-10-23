@@ -324,7 +324,7 @@
           lsp
 ;          lsp-bridge
 ;          lspce
-          flycheck
+          (when (not (featurep :system 'windows)) flycheck)
           beautify
           navigation
           template
