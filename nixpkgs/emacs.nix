@@ -44,7 +44,7 @@
     gnugrep
     gnutls
     imagemagick
-    aspell
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     nerdfonts
     nixfmt
     nodePackages.javascript-typescript-langserver
