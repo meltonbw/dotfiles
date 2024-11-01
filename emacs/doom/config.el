@@ -412,7 +412,7 @@
 
 ;; [[file:config.org::*Behavior][Behavior:1]]
 (after! (verilog-mode)
-  (setq verilog-auto-newline    'f
+  (setq verilog-auto-newline   nil
         verilog-tab-to-comment nil))
 ;; Behavior:1 ends here
 
