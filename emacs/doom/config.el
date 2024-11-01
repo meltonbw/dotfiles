@@ -408,11 +408,11 @@
 
 ;; Behavior
 
-;; Automatically generate a newline after typing =;=, but don't tab to a comment. We have =evil-mode='s =A= command for that.
+;; Do not generate a newline after typing =;=, and don't tab to a comment.
 
 ;; [[file:config.org::*Behavior][Behavior:1]]
 (after! (verilog-mode)
-  (setq verilog-auto-newline    't
+  (setq verilog-auto-newline    'f
         verilog-tab-to-comment nil))
 ;; Behavior:1 ends here
 
