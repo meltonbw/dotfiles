@@ -2,9 +2,7 @@
 {
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
-    userName = "Ben Melton";
-    userEmail = "ben@themeltons.net";
+    package = pkgs.gitFull;
 
     # Replaces ~/.gitignore
     ignores = [
@@ -13,7 +11,12 @@
       "*.swp"
     ];
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Ben Melton";
+        email = "ben@themeltons.net";
+      };
+
       core = {
         editor = "vim";
         pager = "less";

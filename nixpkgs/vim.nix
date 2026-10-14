@@ -12,6 +12,9 @@ let
       url = "https://github.com/${repo}.git";
       ref = ref;
     };
+    # Plugins are loaded together in nvim, so they can't pass nixpkgs'
+    # standalone require check (e.g. cmp-path needs nvim-cmp).
+    doCheck = false;
   };
 #  pluginNode = name: pkgs.vimUtils.buildVimPlugin {
 #    pname = name;
@@ -39,10 +42,8 @@ in {
     withRuby = true;
 
     extraPackages = with pkgs; [
-      nodePackages.pyright
-      nodePackages.pyright
+      pyright
       gcc
-      nerdfonts
       svls  # SystemVerilog Language Server
       svlint  # SystemVerilog linter
       tree-sitter

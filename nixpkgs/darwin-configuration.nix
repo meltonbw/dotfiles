@@ -1,12 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  unstable = import <nixpkgs-unstable> {
-    config = {
-      allowUnfree = true;
-    };
-  };
-in {
+{
   # Nix config
   nix.settings.max-jobs = "auto";
   nix.settings.cores = 0;
@@ -17,8 +11,8 @@ in {
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # Activation runs as root; per-user options apply to this user.
+  system.primaryUser = "ben";
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
@@ -42,7 +36,7 @@ in {
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     fswatch
-    iTerm2
+    iterm2
 #    vlc
 #    xquartz
   ];

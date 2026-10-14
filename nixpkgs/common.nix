@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   user = builtins.getEnv "USER";
@@ -11,12 +11,12 @@ let
     pytz
     scipy
   ];
-  unstable = import <nixos-unstable> {};
+  unstable = import <nixpkgs-unstable> {};
 in {
   programs = {
     home-manager = {
       enable = true;
-      path = https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz;
+      path = https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
     };
   };
 
@@ -29,7 +29,7 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home = {
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     username = "${user}";
     homeDirectory = "${home}";
   };
@@ -50,13 +50,13 @@ in {
     bash  # /bin/bash
     cargo  # Rust project builder
     curl
-    ffmpeg_5
+    ffmpeg
     fdupes
     gcc
     graphviz
 #    haskell-language-server
     iperf2
-    nerdfonts
+    mpdecimal
     nmap
     (python3.withPackages pythonPackages)  # Python3
     rclone  # Syncs files to and from cloud storage
@@ -66,9 +66,9 @@ in {
     svlint  # SystemVerilog linter
     tree  # file tree viewer
     unison  # File synchronization
-    verilator  # Verilog simulator
+    unstable.verilator  # Verilog simulator (26.05 build is broken on darwin)
     wget
-  ];
+  ] ++ builtins.filter lib.isDerivation (builtins.attrValues nerd-fonts);  # all Nerd Fonts
 
   programs.bat.enable = true;  # cat replacement
   programs.htop.enable = true;

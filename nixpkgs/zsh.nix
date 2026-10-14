@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   # .zshenv
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
+    dotDir = config.home.homeDirectory;  # keep .zshrc in ~ (pre-26.05 default)
 
     history = {
       extended = true;
@@ -26,7 +27,7 @@
       youtube-dl = "youtube-dl --restrict-filenames";
     };
 
-    initExtra = ''
+    initContent = ''
       # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
       export KEYTIMEOUT=1
       export NIX_REMOTE=daemon  # Use Nix daemon

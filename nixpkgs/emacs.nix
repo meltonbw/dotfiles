@@ -45,9 +45,8 @@
     gnutls
     imagemagick
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-    nerdfonts
     nixfmt
-    nodePackages.javascript-typescript-langserver
+    typescript-language-server
     pandoc
     (ripgrep.override { withPCRE2 = true; })
     shellcheck
