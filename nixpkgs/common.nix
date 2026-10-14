@@ -71,6 +71,10 @@ in {
   ] ++ builtins.filter lib.isDerivation (builtins.attrValues nerd-fonts);  # all Nerd Fonts
 
   programs.bat.enable = true;  # cat replacement
+  programs.gh = {
+    enable = true;  # GitHub CLI
+    settings.git_protocol = "ssh";
+  };
   programs.htop.enable = true;
 
   home.sessionVariables = {
