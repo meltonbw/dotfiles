@@ -8,6 +8,7 @@ let
 in {
   imports = [
     ./common.nix
+    ./reticulum.nix
  #   hosts.${hostname}
   ];
 }
