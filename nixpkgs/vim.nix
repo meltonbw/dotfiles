@@ -1,9 +1,6 @@
 { pkgs, config, lib, ... }:
 
 let
-  # A way to get unstable packages
-  unstable = import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
-
   # installs a vim plugin from git with a given tag / branch
   pluginGit = ref: repo: pkgs.vimUtils.buildVimPlugin {
     pname = "${lib.strings.sanitizeDerivationName repo}";
@@ -26,12 +23,12 @@ let
 in {
 #  xdg.configFile."nvim/coc-settings.json".source = config/nvim/coc-settings.json;
   xdg.configFile."nvim/lua".source = config/nvim/lua;
-  xdg.configFile."nvim/init.vim".text = ''
-    lua require('init')
-  '';
 
   programs.neovim = {
-    package = unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;  # same nixpkgs as the plugins, so one LuaJIT
+
+    # home-manager generates init.lua; load lua/init.lua from it.
+    initLua = "require('init')";
 
     enable = true;
     viAlias = true;
@@ -63,42 +60,43 @@ in {
 #      coc-yaml
 #      fzf-vim
 #      haskell-vim
-      (plugin "hrsh7th/cmp-buffer")  # Nvim-cmp support for buffer words
-      (plugin "hrsh7th/cmp-cmdline")  # Nvim-cmp support for nvim command mode and search
-      (plugin "uga-rosa/cmp-dynamic")  # Nvim-cmp support for dynamic completions
-      (plugin "tzachar/fuzzy.nvim")  # Abstraction layer for fzf and fzy
-      (plugin "tzachar/cmp-fuzzy-buffer")  # Nvim-cmp fuzzy finder buffer source
-      (plugin "saadparwaiz1/cmp_luasnip")  # Nvim-cmp support for luasnip
-      (plugin "hrsh7th/cmp-nvim-lsp")  # Nvim-cmp support for nvim LSP
-      (plugin "hrsh7th/cmp-path")  # Nvim-cmp support for filesystem paths
-      (plugin "phaazon/hop.nvim")  # Quick navigation written in lua
-      (plugin "lukas-reineke/indent-blankline.nvim")  # Indent guides
-      (plugin "ggandor/leap.nvim")  # Motions
-      (plugin "nvim-lua/lsp-status.nvim")  # LSP status line component
-      (plugin "hoob3rt/lualine.nvim")  # Statusline
-      (plugin "L3MON4D3/LuaSnip")  # LuaSnip snippets
+      cmp-buffer  # Nvim-cmp support for buffer words
+      cmp-cmdline  # Nvim-cmp support for nvim command mode and search
+      fuzzy-nvim  # Abstraction layer for fzf and fzy
+      cmp-fuzzy-buffer  # Nvim-cmp fuzzy finder buffer source
+      cmp_luasnip  # Nvim-cmp support for luasnip
+      cmp-nvim-lsp  # Nvim-cmp support for nvim LSP
+      cmp-path  # Nvim-cmp support for filesystem paths
+      hop-nvim  # Quick navigation written in lua
+      indent-blankline-nvim  # Indent guides
+      leap-nvim  # Motions
+      lsp-status-nvim  # LSP status line component
+      lualine-nvim  # Statusline
+      luasnip  # LuaSnip snippets
 #      neco-ghc
-      (plugin "TimUntersberger/neogit")  # Git tool
+      neogit  # Git tool
 #      nerdcommenter
 #      nerdtree
-      (plugin "hrsh7th/nvim-cmp")  # Completion engine
-      (plugin "yamatsum/nvim-cursorline")  # Cursorline highlighter
-      (plugin "neovim/nvim-lspconfig")  # Language server configurator
-      (plugin "kyazdani42/nvim-web-devicons")  # Icon package
-      (plugin "kyazdani42/nvim-tree.lua")  # Filetree viewer
-      (plugin "ishan9299/nvim-solarized-lua")  # Solarized theme
-      (plugin "nvim-treesitter/nvim-treesitter")  # Syntax parser
-      (plugin "RRethy/nvim-treesitter-textsubjects")  # Location aware text objects
-      (plugin "p00f/nvim-ts-rainbow")  # Rainbow parentheses
-      (plugin "nvim-lua/plenary.nvim")  # Lua library for Neovim
-      (plugin "nvim-lua/popup.nvim")  # Lua library for popups
-      (plugin "tpope/vim-repeat")  # Repeat functionality for plugins
+      nvim-cmp  # Completion engine
+      nvim-cursorline  # Cursorline highlighter
+      nvim-lspconfig  # Language server configurator
+      nvim-web-devicons  # Icon package
+      nvim-tree-lua  # Filetree viewer
+      nvim-solarized-lua  # Solarized theme
+      # Treesitter: prebuilt grammars from nixpkgs; highlighting and selection are
+      # built into Neovim (see config/nvim/lua/plugins/tree-sitter.lua).
+      (nvim-treesitter.withPlugins (p: with p; [ bash c ini lua nix python systemverilog vim vimdoc query ]))  # Parsers and indentation
+      nvim-treesitter-textobjects  # Function/class text objects
+      rainbow-delimiters-nvim  # Rainbow parentheses (replaces archived nvim-ts-rainbow)
+      plenary-nvim  # Lua library for Neovim
+      popup-nvim  # Lua library for popups
+      vim-repeat  # Repeat functionality for plugins
 #      tagbar
-      (plugin "nvim-telescope/telescope.nvim")  # File search utility
-      unstable.vimPlugins.telescope-fzf-native-nvim
+      telescope-nvim  # File search utility
+      telescope-fzf-native-nvim
       vim-nix
       (plugin "meltonbw/vim-snippets")  # Code snippets
-      (plugin "folke/which-key.nvim")  # Vim key command reference
+      which-key-nvim  # Vim key command reference
     ];
   };
 }

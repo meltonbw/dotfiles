@@ -1,73 +1,36 @@
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "python", "verilog" },
+-- Treesitter. Parsers come prebuilt from nixpkgs (see vim.nix).
+-- Highlighting and incremental selection are built into Neovim 0.12;
+-- nvim-treesitter supplies indentation, nvim-treesitter-textobjects the
+-- function/class text objects.
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-  
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+vim.treesitter.language.register("systemverilog", "verilog")  -- Use the SystemVerilog parser for Verilog files
 
-  -- List of parsers to ignore installing (for "all")
-  ignore_install = { "javascript" },
+-- Highlighting and indentation for every filetype that has a parser
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("user_treesitter", { clear = true }),
+  callback = function(args)
+    if pcall(vim.treesitter.start, args.buf) then
+      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+  end,
+})
 
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  parser_install_dir = "$HOME/.local/share/nvim/site", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+-- Incremental selection: Neovim's built-in an / in / ]n / [n, also on the old keys
+vim.keymap.set("n", "gnn", "van", { remap = true, desc = "Select treesitter node" })
+vim.keymap.set("x", "grn", "an",  { remap = true, desc = "Expand to parent node" })
+vim.keymap.set("x", "grc", "an",  { remap = true, desc = "Expand to parent node" })
+vim.keymap.set("x", "grm", "in",  { remap = true, desc = "Shrink to child node" })
+vim.keymap.set("x", ".",   "an",  { remap = true, desc = "Expand to parent node (was textsubjects-smart)" })
 
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    disable = { },
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-
-  -- Indentation based on treesitter for the = operator. NOTE: This is an experimental feature.
-  indent = {
-    enable = true
-  },
-
-  -- Incremental selection based on the named nodes from the grammar.
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-
-  textsubjects = {
-      enable = true,
---      prev_selection = ',', -- (Optional) keymap to select the previous selection
-      keymaps = {
-          ['.'] = 'textsubjects-smart',
-          [';'] = 'textsubjects-container-outer',
-          ['i;'] = 'textsubjects-container-inner',
-      },
-  },
-
-  -- Multicolored highlighting for brackets/parens
-  rainbow = {
-    enable = true,
-    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
-  }
-}
-
-local ft_to_parser = require "nvim-treesitter.parsers".filetype_to_parsername
-ft_to_parser.verilog = "systemverilog"  -- Use verilog parser for SystemVerilog
+-- Text objects (replace textsubjects' container objects)
+require("nvim-treesitter-textobjects").setup({ select = { lookahead = true } })
+local select = require("nvim-treesitter-textobjects.select")
+for lhs, capture in pairs({
+  [";"]  = "@function.outer",
+  ["i;"] = "@function.inner",
+  ["ac"] = "@class.outer",
+  ["ic"] = "@class.inner",
+}) do
+  vim.keymap.set({ "x", "o" }, lhs, function() select.select_textobject(capture, "textobjects") end,
+    { desc = "Select " .. capture })
+end

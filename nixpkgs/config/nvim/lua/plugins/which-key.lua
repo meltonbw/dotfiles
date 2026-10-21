@@ -1,79 +1,27 @@
 local wk = require("which-key")
---require("which-key").setup {
---    -- your configuration comes here
---    -- or leave it empty to use the default settings
---    -- refer to the configuration section below
---}
+wk.setup({})  -- initialise before adding mappings, or they are dropped
 
--- Normal Maps
-wk.register({
-  b = {
-    name = "browsers",
-    t = { "<cmd>NvimTreeToggle<cr>",                                   "Toggle file tree viewer" },
-    f = { "<cmd>lua require('telescope.builtin').file_browser()<cr>",  "Lists files and folders in your CWD" },
-  },
-  f = {
-    name = "finders",
-    b = { "<cmd>lua require('telescope.builtin').buffers()<cr>",       "List open buffers" },
-    f = { "<cmd>lua require('telescope.builtin').find_files()<cr>",    "Lists files in CWD" },
-    l = { "<cmd>lua require('telescope.builtin').live_grep()<cr>",     "Search for a string in your CWD" },
-    h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>",     "Lists available help tags" },
-    s = { "<cmd>lua require('telescope.builtin').grep_string()<cr>",   "Searches for the string under your cursor in your CWD" },
-  },
-  h = {
-    name = "hop",
-    b = { "<cmd>lua require'hop'.hint_char2()<cr>",       "Hop to bigram (two characters)" },
-    c = { "<cmd>lua require'hop'.hint_char1()<cr>",       "Hop to character" },
-    l = { "<cmd>lua require'hop'.hint_lines()<cr>",       "Hop to line" },
-    p = { "<cmd>lua require'hop'.hint_patterns()<cr>",    "Hop to pattern" },
-    r = { "<cmd>lua require'hop'.refine_hints()<cr>",     "Refine hop hint" },
-    w = { "<cmd>lua require'hop'.hint_words()<cr>",       "Hop to word" },
-  },
-  w = { "<C-w>", "Window commands", noremap=false },
-  q = {
-    name = "quit",
-    b = { "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", "Close buffer without closing split" },
-  },
-},
-{
-  prefix = "<leader>",
-  mode = 'n'
-})
+-- Normal mode maps (which-key v3 spec format)
+wk.add({
+  { "<leader>b",  group = "browsers" },
+  { "<leader>bt", "<cmd>NvimTreeToggle<cr>",                                   desc = "Toggle file tree viewer" },
 
--- Insert Maps
---wk.register({
---  s = {
---    name = "snippets",
---    i = { "<Plug>(coc-snippets-expand)",         "Trigger snippet expand" },
---    n = { "<Plug>(coc-snippets-expand-jump)",    "Expand and jump (make expand higher priority)" },
---  },
---  [','] = { ",",                                 "Comma escape" },
---},
---{
---  prefix = "<leader>",
---  mode = "i"
---})
+  { "<leader>f",  group = "finders" },
+  { "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>",       desc = "List open buffers" },
+  { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>",    desc = "Lists files in CWD" },
+  { "<leader>fl", "<cmd>lua require('telescope.builtin').live_grep()<cr>",     desc = "Search for a string in your CWD" },
+  { "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>",     desc = "Lists available help tags" },
+  { "<leader>fs", "<cmd>lua require('telescope.builtin').grep_string()<cr>",   desc = "Searches for the string under your cursor in your CWD" },
 
--- Visual Maps
-wk.register({
-  s = {
-    name = "snippets",
-    x = { "<Plug>(coc-convert-snippet)",         "Convert visual selected code to snippet" },
-  },
-},
-{
-  prefix = "<leader>",
-  mode = "x"
-})
+  { "<leader>h",  group = "hop" },
+  { "<leader>hb", "<cmd>lua require'hop'.hint_char2()<cr>",    desc = "Hop to bigram (two characters)" },
+  { "<leader>hc", "<cmd>lua require'hop'.hint_char1()<cr>",    desc = "Hop to character" },
+  { "<leader>hl", "<cmd>lua require'hop'.hint_lines()<cr>",    desc = "Hop to line" },
+  { "<leader>hp", "<cmd>lua require'hop'.hint_patterns()<cr>", desc = "Hop to pattern" },
+  { "<leader>hw", "<cmd>lua require'hop'.hint_words()<cr>",    desc = "Hop to word" },
 
--- Visual/Select Maps
-wk.register({
-  s = {
-    name = "snippets",
-    n = { "<Plug>(coc-snippets-select)",         "Select text for visual placeholder of snippet" },
-  },
-},
-{
-  prefix = "<leader>",
-  mode = "v"
+  { "<leader>w",  proxy = "<C-w>", group = "windows" },
+
+  { "<leader>q",  group = "quit" },
+  { "<leader>qb", "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", desc = "Close buffer without closing split" },
 })

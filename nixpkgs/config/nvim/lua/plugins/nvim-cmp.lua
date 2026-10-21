@@ -19,7 +19,6 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'path' },
     { name = 'luasnip', keyword_length = 2 },
-    { name = 'dynamic', keyword_length = 2 },
     }, {
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'fuzzy_buffer', keyword_length = 3 },
@@ -55,7 +54,6 @@ cmp.setup({
         nvim_lsp = '',
         fuzzy_buffer = '',
         luasnip = '', 
-        dynamic = '',
       }
 
       item.menu = menu_icon[entry.source.name]
@@ -140,29 +138,3 @@ cmp.setup.cmdline('/', {
   },
 })
 
-
--- cmp-dynamic setup
-local Date = require("cmp_dynamic.utils.date")
---[[
-require("cmp_dynamic").setup({
-  {
-    label = "today",
-    insertText = 1,
-    cb = {
-        function()
-            return os.date("%Y/%m/%d")
-        end,
-    },
-  },
-  {
-    label = "next Monday",
-    insertText = 1,
-    cb = {
-        function()
-            return Date.new():add_date(7):day(1):format("%Y/%m/%d")
-        end,
-    },
-    resolve = true, -- default: false
-  },
-})
---]]

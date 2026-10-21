@@ -1,3 +1,5 @@
-vim.g.indent_blankline_char = '┊'
-vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_show_current_context = true
+-- indent-blankline v3 ("ibl"); treesitter is always used for scope.
+require("ibl").setup({
+  indent = { char = "┊" },
+  scope = { enabled = true },  -- highlight the current context (was show_current_context)
+})
