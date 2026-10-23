@@ -1,7 +1,7 @@
 { ... }:
 
 let
-  unstable = import <nixpkgs-unstable> {};
+  unstable = import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
 in {
   home.packages = [
     unstable.rns  # rnstatus, rnodeconf, rnpath, rnprobe, rncp, rnx, rnid
