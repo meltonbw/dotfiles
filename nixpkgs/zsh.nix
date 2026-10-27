@@ -33,7 +33,10 @@
       export NIX_REMOTE=daemon  # Use Nix daemon
       bindkey -v
       
-      export PATH=/Users/ben/.local/bin:$PATH
+      # Put Nix ahead of macOS paths even when PATH was inherited, e.g. from an
+      # app, since nix-darwin skips set-environment once it has run.
+      typeset -U path  # keep the first occurrence of each entry
+      path=(/Users/ben/.local/bin /Users/ben/.nix-profile/bin /run/current-system/sw/bin $path)
     '';
 
     oh-my-zsh = {
