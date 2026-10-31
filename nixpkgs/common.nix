@@ -60,6 +60,7 @@ in {
     iperf2
     mpdecimal
     nmap
+    nodejs  # Node.js, with npm and npx
     poppler-utils  # PDF tools: pdftotext, pdftoppm, pdfinfo
     (python3.withPackages pythonPackages)  # Python3
     rclone  # Syncs files to and from cloud storage
